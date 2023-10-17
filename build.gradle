@@ -16,12 +16,37 @@ repositories {
 }
 
 dependencies {
+    // spring boot
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
-    runtimeOnly 'com.mysql:mysql-connector-j'
-    implementation 'org.projectlombok:lombok'
-
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // mysql
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    // AWS SDK (S3)
+    implementation platform('com.amazonaws:aws-java-sdk-bom:1.12.529')
+    implementation 'com.amazonaws:aws-java-sdk-s3'
+
+    // Spring Cloud Starter AWS
+    implementation 'io.awspring.cloud:spring-cloud-starter-aws:2.3.1'
+
+    // MultipartRequest
+    implementation group: 'commons-io', name: 'commons-io', version: '2.14.0' /* Apache commons-io */
+    implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.5' /* Apache Commons FileUpload */
+
+    // SLF4J API
+    implementation 'org.slf4j:slf4j-api:2.0.3'
+
+    // Logback (SLF4J implementation)
+    implementation 'ch.qos.logback:logback-classic:1.4.1'
+
+    // JAXB
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
 }
 
 tasks.named('test') {
