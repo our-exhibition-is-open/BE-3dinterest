@@ -1,7 +1,7 @@
 package com.team2._3dinterest.domain.yugyeong.upload.service;
 
-import com.team2._3dinterest.domain.yugyeong.upload.dao.AmazonS3ResourceStorage;
-import com.team2._3dinterest.domain.yugyeong.upload.dto.FileDetail;
+import com.team2._3dinterest.domain.yugyeong.upload.repository.AmazonS3ResourceStorage;
+import com.team2._3dinterest.domain.yugyeong.upload.repository.FileDetail;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

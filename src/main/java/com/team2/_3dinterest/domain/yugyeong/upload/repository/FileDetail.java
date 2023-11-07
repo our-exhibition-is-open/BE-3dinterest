@@ -1,4 +1,4 @@
-package com.team2._3dinterest.domain.yugyeong.upload.dto;
+package com.team2._3dinterest.domain.yugyeong.upload.repository;
 
 import com.team2._3dinterest.global.util.MultipartUtil;
 import lombok.*;

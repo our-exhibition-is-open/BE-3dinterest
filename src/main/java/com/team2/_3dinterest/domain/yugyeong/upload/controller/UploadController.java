@@ -1,6 +1,6 @@
 package com.team2._3dinterest.domain.yugyeong.upload.controller;
 
-import com.team2._3dinterest.domain.yugyeong.upload.dto.FileDetail;
+import com.team2._3dinterest.domain.yugyeong.upload.repository.FileDetail;
 import com.team2._3dinterest.domain.yugyeong.upload.service.FileUploadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
