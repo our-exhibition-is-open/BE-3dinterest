@@ -1,5 +1,7 @@
 package com.team2._3dinterest.domain.seunghun.controller;
 
+import com.team2._3dinterest.domain.seunghun.repository.FileDetailRepository;
+import com.team2._3dinterest.domain.seunghun.repository.UserRepository;
 import com.team2._3dinterest.domain.seunghun.user.UserCreateForm;
 import com.team2._3dinterest.domain.seunghun.service.UserService;
 import jakarta.validation.Valid;
@@ -19,6 +21,8 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 
     private final UserService userService;
+    private final UserRepository userRepository;
+    private final FileDetailRepository fileDetailRepository;
 
     @GetMapping("/signup")
     public String signup(UserCreateForm userCreateForm) {
