@@ -1,12 +1,13 @@
 package com.team2._3dinterest.domain.seunghun.controller;
 
-
+import com.team2._3dinterest.domain.seunghun.repository.FileDetailDTO;
 import com.team2._3dinterest.domain.seunghun.repository.UserDetailsDTO;
 import com.team2._3dinterest.domain.seunghun.repository.FileDetailRepository;
 import com.team2._3dinterest.domain.seunghun.repository.UserRepository;
 import com.team2._3dinterest.domain.seunghun.user.UserCreateForm;
 import com.team2._3dinterest.domain.seunghun.user.SiteUser;
 import com.team2._3dinterest.domain.seunghun.service.UserService;
+import com.team2._3dinterest.domain.yugyeong.upload.dto.FileDetail;
 import jakarta.validation.Valid;
 
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
@@ -51,6 +54,20 @@ public class UserApiController {
         if (user.isPresent()) {
             UserDetailsDTO userDetailsDTO = UserDetailsDTO.from(user.get());
             return ResponseEntity.ok(userDetailsDTO);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @GetMapping("/{username}/files")
+    public ResponseEntity<List<FileDetailDTO>> getUserFiles(@PathVariable String username) {
+        Optional<SiteUser> user = userRepository.findByUsername(username);
+
+        if (user.isPresent()) {
+            List<FileDetail> files = fileDetailRepository.findByUserId(user.get().getId());
+            List<FileDetailDTO> fileDetailDTOs = files.stream()
+                    .map(FileDetailDTO::from)
+                    .collect(Collectors.toList());
+            return ResponseEntity.ok(fileDetailDTOs);
         } else {
             return ResponseEntity.notFound().build();
         }
