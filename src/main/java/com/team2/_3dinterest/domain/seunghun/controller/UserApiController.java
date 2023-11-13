@@ -116,4 +116,17 @@ public class UserApiController {
                 .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();
     }
+
+    @GetMapping("/{username}/files/{fileId}")
+    public ResponseEntity<FileDetailDTO> getFileDetails(@PathVariable String username, @PathVariable String fileId) {
+        // 파일 상세 정보 조회 로직 추가
+        Optional<FileDetail> fileDetail = fileDetailRepository.findById(fileId);
+
+        if (fileDetail.isPresent()) {
+            FileDetailDTO fileDetailDTO = FileDetailDTO.from(fileDetail.get());
+            return ResponseEntity.ok(fileDetailDTO);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
