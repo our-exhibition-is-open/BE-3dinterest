@@ -1,11 +1,13 @@
 package com.team2._3dinterest.domain.yugyeong.upload.dto;
 
 import com.team2._3dinterest.global.util.MultipartUtil;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
-
+@Entity
 @Getter
 @Setter
 @ToString
@@ -13,6 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
 public class FileDetail {
+    @Id
     private String id;      // 36자리의 UUID
     private String name;    // 파일 업로드 시점의 파일명
     private String format;  // 파일 확장자
