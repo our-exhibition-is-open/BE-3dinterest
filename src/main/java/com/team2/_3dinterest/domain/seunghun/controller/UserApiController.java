@@ -1,8 +1,11 @@
 package com.team2._3dinterest.domain.seunghun.controller;
 
+
+import com.team2._3dinterest.domain.seunghun.repository.UserDetailsDTO;
 import com.team2._3dinterest.domain.seunghun.repository.FileDetailRepository;
 import com.team2._3dinterest.domain.seunghun.repository.UserRepository;
 import com.team2._3dinterest.domain.seunghun.user.UserCreateForm;
+import com.team2._3dinterest.domain.seunghun.user.SiteUser;
 import com.team2._3dinterest.domain.seunghun.service.UserService;
 import jakarta.validation.Valid;
 
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import lombok.RequiredArgsConstructor;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
@@ -39,6 +44,19 @@ public class UserApiController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
+    @GetMapping("/{username}/details")
+    public ResponseEntity<UserDetailsDTO> getUserDetails(@PathVariable String username) {
+        Optional<SiteUser> user = userRepository.findByUsername(username);
+
+        if (user.isPresent()) {
+            UserDetailsDTO userDetailsDTO = UserDetailsDTO.from(user.get());
+            return ResponseEntity.ok(userDetailsDTO);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
 }
 
 
