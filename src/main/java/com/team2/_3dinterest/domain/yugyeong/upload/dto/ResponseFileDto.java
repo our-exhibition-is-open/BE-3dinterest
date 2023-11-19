@@ -15,8 +15,8 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
 public class ResponseFileDto {
-    private MultipartFile uploadImage;
-    private List<MultipartFile> fileList;
+    private String image;
+    private List<String> fileList;
 
     private String id;      // 36자리의 UUID
     private String name;    // 파일 업로드 시점의 파일명
@@ -47,17 +47,16 @@ public class ResponseFileDto {
         return responseFileDtoList;
     }
 
-    public static ResponseFileDto ResponseImage(MultipartFile uploadImage) {
+    public static ResponseFileDto ResponseImage(MultipartFile image) {
         final String fileId = MultipartUtil.createUUID();
-        final String format = MultipartUtil.getFormat(uploadImage.getContentType());
+        final String format = MultipartUtil.getFormat(image.getContentType());
 
         return ResponseFileDto.builder()
-                .uploadImage(uploadImage)
                 .id(fileId)
-                .name(uploadImage.getOriginalFilename())
+                .name(image.getOriginalFilename())
                 .format(format)
                 .path(MultipartUtil.createPath(fileId, format))
-                .bytes(uploadImage.getSize())
+                .bytes(image.getSize())
                 .build();
     }
 }
