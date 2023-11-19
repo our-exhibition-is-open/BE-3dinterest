@@ -49,6 +49,19 @@ dependencies {
     // JAXB
     implementation 'javax.xml.bind:jaxb-api:2.3.1'
 
+    // Spring Security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE'
+
+    // jakarta
+    implementation 'jakarta.persistence:jakarta.persistence-api:3.0.0'  // Jarkarta.persistence 파일 이용을 위해 추가
+    implementation 'jakarta.validation:jakarta.validation-api:3.0.0'    // Jakata Bean Validation API 데이텅 유용성 검사
+
+    //Json web token
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+
     // validation
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'javax.validation:validation-api:2.0.1.Final'
