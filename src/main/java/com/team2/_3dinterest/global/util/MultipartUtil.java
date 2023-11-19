@@ -17,7 +17,7 @@ public final class MultipartUtil {
      * 새로운 파일 고유 ID를 생성합니다.
      * @return 36자리의 UUID
      */
-    public static String createFileId() {
+    public static String createUUID() {
         return UUID.randomUUID().toString();
     }
 
