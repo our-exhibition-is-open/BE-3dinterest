@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
@@ -19,7 +20,11 @@ public class UploadController {
     private final FileUploadService fileUploadService;
 
     @PostMapping
-    public ResponseEntity<List<ResponseFileDto>> post(@Valid @RequestPart RequestUploadDto requestUploadDto) {
-         return ResponseEntity.ok(fileUploadService.save(requestUploadDto)); // 성공, 200 OK 생성
+    public ResponseEntity<List<ResponseFileDto>> post(
+            @Valid @RequestPart(value =  "image") MultipartFile image,
+            @Valid @RequestPart(value =  "file") List<MultipartFile> fileList,
+            @Valid @RequestPart(value = "requestUploadDto") RequestUploadDto requestUploadDto) {
+
+         return ResponseEntity.ok(fileUploadService.save(image, fileList, requestUploadDto)); // 성공, 200 OK 생성
     }
 }
