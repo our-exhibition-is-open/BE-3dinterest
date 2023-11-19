@@ -20,9 +20,4 @@ public class RequestUploadDto {
     private boolean tagB;
     private boolean tagC;
     private boolean tagD;
-
-    @NotNull(message = "No uploadImage")
-    private MultipartFile uploadImage;
-    @NotNull(message = "No fileList")
-    private List<MultipartFile> fileList;
 }
