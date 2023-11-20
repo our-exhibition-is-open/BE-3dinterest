@@ -35,7 +35,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserApiController {
 
@@ -79,7 +79,7 @@ public class UserApiController {
         Optional<SiteUser> user = userRepository.findByUsername(username);
 
         if (user.isPresent()) {
-            List<FileDetail> files = fileDetailRepository.findByUserId(user.get().getId());
+            List<FileDetail> files = fileDetailRepository.findByUserId(user.get().getUser_id());
             List<FileDetailDTO> fileDetailDTOs = files.stream()
                     .map(FileDetailDTO::from)
                     .collect(Collectors.toList());

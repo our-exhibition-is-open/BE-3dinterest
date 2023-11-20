@@ -12,7 +12,7 @@ public class UserDetailsDTO {
 
     public static UserDetailsDTO from(SiteUser user) {
         UserDetailsDTO userDetailsDTO = new UserDetailsDTO();
-        userDetailsDTO.id = user.getId();
+        userDetailsDTO.id = user.getUser_id();
         userDetailsDTO.username = user.getUsername();
         userDetailsDTO.email = user.getEmail();
         return userDetailsDTO;

@@ -20,7 +20,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/mypage")
+@RequestMapping("/mypage")
 @RequiredArgsConstructor
 public class MyPageController {
 
