@@ -2,8 +2,8 @@ package com.team2._3dinterest.domain.yugyeong.upload.dto;
 
 import com.team2._3dinterest.global.util.MultipartUtil;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,8 @@ public class ResponseFileDto {
     private long bytes;     // 바이트
 
     @Builder.Default
-    private LocalDateTime createdAt = LocalDateTime.now();
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime upload_date = LocalDateTime.now();
 
     // model
     public static List<ResponseFileDto> multipartOf(List<MultipartFile> modelList) {
