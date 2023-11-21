@@ -13,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -58,5 +59,21 @@ public class MyPageController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+    @GetMapping("/files/byParentID")
+    public ResponseEntity<List<FileDetailDTO>> getFilesByParentID(@RequestParam String parentID) {
+        // Step 1: parentID를 가지는 모든 postID 검색
+        List<String> postIDs = userFileRepository.findPostIDsByParentID(parentID);
+
+        // Step 2: 각 postID에 대한 파일 상세 정보 검색 및 반환 형태 조립
+        List<FileDetailDTO> fileDetailDTOs = postIDs.stream()
+                .flatMap(postID -> {
+                    List<UserFile> userFiles = userFileRepository.findByPostID(postID);
+                    return userFiles.stream()
+                            .map(userFile -> FileDetailDTO.from(userFile.getFileDetail()));
+                })
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(fileDetailDTOs);
     }
 }
