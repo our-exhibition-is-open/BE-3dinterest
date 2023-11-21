@@ -17,8 +17,8 @@ public class UploadEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int post_id;
-
     private String user_id;
+    private String title;
     private String model_url;
     private String image_url;
     private boolean tag_a;
