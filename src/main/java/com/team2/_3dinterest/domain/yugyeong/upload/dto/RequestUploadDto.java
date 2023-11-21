@@ -11,11 +11,16 @@ import lombok.Getter;
 public class RequestUploadDto {
     @NotNull(message = "No title")
     private String title;
-    @NotNull(message = "No userName")
-    private String userName;
 
+    @NotNull(message = "No tagA")
     private boolean tagA;
+
+    @NotNull(message = "No tagB")
     private boolean tagB;
+
+    @NotNull(message = "No tagC")
     private boolean tagC;
+
+    @NotNull(message = "No tagD")
     private boolean tagD;
 }
