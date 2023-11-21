@@ -27,36 +27,4 @@ public class ResponseFileDto {
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    public static List<com.team2._3dinterest.domain.yugyeong.upload.dto.ResponseFileDto> multipartOf(List<MultipartFile> fileList) {
-        List<com.team2._3dinterest.domain.yugyeong.upload.dto.ResponseFileDto> responseFileDtoList = new ArrayList<>();
-
-        for (MultipartFile file : fileList) {
-            final String fileId = MultipartUtil.createUUID();
-            final String format = MultipartUtil.getFormat(file.getContentType());
-
-            com.team2._3dinterest.domain.yugyeong.upload.dto.ResponseFileDto responseFileDto = com.team2._3dinterest.domain.yugyeong.upload.dto.ResponseFileDto.builder()
-                    .id(fileId)
-                    .name(file.getOriginalFilename())
-                    .format(format)
-                    .path(MultipartUtil.createPath(fileId, format))
-                    .bytes(file.getSize())
-                    .build();
-
-            responseFileDtoList.add(responseFileDto);
-        }
-        return responseFileDtoList;
-    }
-
-    public static com.team2._3dinterest.domain.yugyeong.upload.dto.ResponseFileDto ResponseImage(MultipartFile image) {
-        final String fileId = MultipartUtil.createUUID();
-        final String format = MultipartUtil.getFormat(image.getContentType());
-
-        return com.team2._3dinterest.domain.yugyeong.upload.dto.ResponseFileDto.builder()
-                .id(fileId)
-                .name(image.getOriginalFilename())
-                .format(format)
-                .path(MultipartUtil.createPath(fileId, format))
-                .bytes(image.getSize())
-                .build();
-    }
 }
