@@ -16,7 +16,7 @@ import java.util.List;
 @Builder
 public class ResponseFileDto {
     private String image;
-    private List<String> fileList;
+    private List<String> modelList;
 
     private String id;      // 36자리의 UUID
     private String name;    // 파일 업로드 시점의 파일명
@@ -27,10 +27,11 @@ public class ResponseFileDto {
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    public static List<ResponseFileDto> multipartOf(List<MultipartFile> fileList) {
+    // model
+    public static List<ResponseFileDto> multipartOf(List<MultipartFile> modelList) {
         List<ResponseFileDto> responseFileDtoList = new ArrayList<>();
 
-        for (MultipartFile file : fileList) {
+        for (MultipartFile file : modelList) {
             final String fileId = MultipartUtil.createUUID();
             final String format = MultipartUtil.getFormat(file.getContentType());
 
