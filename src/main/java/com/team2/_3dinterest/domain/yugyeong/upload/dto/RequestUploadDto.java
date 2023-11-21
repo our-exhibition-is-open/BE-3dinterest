@@ -3,12 +3,10 @@ package com.team2._3dinterest.domain.yugyeong.upload.dto;
 import lombok.Builder;
 import lombok.Data;
 import javax.validation.constraints.NotNull;
-import lombok.Setter;
-import org.springframework.web.multipart.MultipartFile;
-import java.util.List;
+import lombok.Getter;
 
 @Data
-@Setter
+@Getter
 @Builder
 public class RequestUploadDto {
     @NotNull(message = "No title")
