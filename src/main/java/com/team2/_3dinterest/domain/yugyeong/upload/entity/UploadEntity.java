@@ -20,4 +20,5 @@ public class UploadEntity {
     private boolean tag_d;
     private int like_cnt;
     private String upload_date;
+    private LocalDateTime upload_date;
 }
