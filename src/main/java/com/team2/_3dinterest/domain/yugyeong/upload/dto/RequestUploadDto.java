@@ -9,6 +9,9 @@ import lombok.Getter;
 @Getter
 @Builder
 public class RequestUploadDto {
+    @NotNull(message = "No user_id")
+    private String user_id;
+
     @NotNull(message = "No title")
     private String title;
 
