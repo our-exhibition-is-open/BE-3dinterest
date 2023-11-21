@@ -5,7 +5,7 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import com.team2._3dinterest.domain.seunghun.repository.ResponseFileDto;
 
-@Entity
+
 @Table(name = "user_file")
 @Getter
 @Setter
