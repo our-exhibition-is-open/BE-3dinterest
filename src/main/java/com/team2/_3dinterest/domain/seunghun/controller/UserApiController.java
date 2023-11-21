@@ -1,13 +1,9 @@
 package com.team2._3dinterest.domain.seunghun.controller;
 
-import com.team2._3dinterest.domain.seunghun.repository.FileDetailDTO;
-import com.team2._3dinterest.domain.seunghun.repository.UserDetailsDTO;
-import com.team2._3dinterest.domain.seunghun.repository.FileDetailRepository;
-import com.team2._3dinterest.domain.seunghun.repository.UserRepository;
+import com.team2._3dinterest.domain.seunghun.repository.*;
 import com.team2._3dinterest.domain.seunghun.user.UserCreateForm;
 import com.team2._3dinterest.domain.seunghun.user.SiteUser;
 import com.team2._3dinterest.domain.seunghun.service.UserService;
-import com.team2._3dinterest.domain.yugyeong.upload.dto.FileDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -79,7 +75,7 @@ public class UserApiController {
         Optional<SiteUser> user = userRepository.findByUsername(username);
 
         if (user.isPresent()) {
-            List<FileDetail> files = fileDetailRepository.findByUserId(user.get().getUser_id());
+            List<ResponseFileDto> files = fileDetailRepository.findByUserId(user.get().getUser_id());
             List<FileDetailDTO> fileDetailDTOs = files.stream()
                     .map(FileDetailDTO::from)
                     .collect(Collectors.toList());
@@ -120,7 +116,7 @@ public class UserApiController {
     @GetMapping("/{username}/files/{fileId}")
     public ResponseEntity<FileDetailDTO> getFileDetails(@PathVariable String username, @PathVariable String fileId) {
         // 파일 상세 정보 조회 로직 추가
-        Optional<FileDetail> fileDetail = fileDetailRepository.findById(fileId);
+        Optional<ResponseFileDto> fileDetail = fileDetailRepository.findById(fileId);
 
         if (fileDetail.isPresent()) {
             FileDetailDTO fileDetailDTO = FileDetailDTO.from(fileDetail.get());

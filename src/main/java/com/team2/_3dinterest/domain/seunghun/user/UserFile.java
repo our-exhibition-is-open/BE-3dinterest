@@ -3,7 +3,7 @@ package com.team2._3dinterest.domain.seunghun.user;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.Id;
-import com.team2._3dinterest.domain.yugyeong.upload.dto.FileDetail;
+import com.team2._3dinterest.domain.seunghun.repository.ResponseFileDto;
 
 @Entity
 @Table(name = "user_file")
@@ -25,11 +25,11 @@ public class UserFile{
 
     @OneToOne
     @JoinColumn(name = "file_detail_id", nullable = false, unique = true)
-    private FileDetail fileDetail;
+    private ResponseFileDto fileDetail;
 
     // 추가적인 필드 (예: 파일 설명, 태그 등)
 
-    public static UserFile createForUser(SiteUser user, FileDetail fileDetail) {
+    public static UserFile createForUser(SiteUser user, ResponseFileDto fileDetail) {
         return UserFile.builder()
                 .user(user)
                 .fileDetail(fileDetail)

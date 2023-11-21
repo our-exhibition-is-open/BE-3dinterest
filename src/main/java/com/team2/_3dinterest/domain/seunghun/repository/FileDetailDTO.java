@@ -1,5 +1,4 @@
 package com.team2._3dinterest.domain.seunghun.repository;
-import com.team2._3dinterest.domain.yugyeong.upload.dto.FileDetail;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -12,7 +11,7 @@ public class FileDetailDTO {
     private long bytes;
     private LocalDateTime createdAt;
 
-    public static FileDetailDTO from(FileDetail fileDetail) {
+    public static FileDetailDTO from(ResponseFileDto fileDetail) {
         FileDetailDTO fileDetailDTO = new FileDetailDTO();
         fileDetailDTO.id = fileDetail.getId();
         fileDetailDTO.name = fileDetail.getName();
