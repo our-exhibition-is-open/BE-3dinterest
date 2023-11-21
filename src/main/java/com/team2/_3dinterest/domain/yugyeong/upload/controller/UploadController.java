@@ -21,10 +21,10 @@ public class UploadController {
 
     @PostMapping
     public ResponseEntity<List<ResponseFileDto>> post(
-            @Valid @RequestPart(value =  "image") MultipartFile image,
-            @Valid @RequestPart(value =  "file") List<MultipartFile> fileList,
+            @Valid @RequestPart(value = "image") MultipartFile image,
+            @Valid @RequestPart(value = "model") List<MultipartFile> modelList,
             @Valid @RequestPart(value = "requestUploadDto") RequestUploadDto requestUploadDto) {
 
-         return ResponseEntity.ok(fileUploadService.save(image, fileList, requestUploadDto)); // 성공, 200 OK 생성
+        return ResponseEntity.ok(fileUploadService.save(image, modelList, requestUploadDto)); // 성공, 200 OK 생성
     }
 }
