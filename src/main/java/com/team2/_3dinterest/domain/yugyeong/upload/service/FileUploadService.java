@@ -3,6 +3,7 @@ package com.team2._3dinterest.domain.yugyeong.upload.service;
 import com.team2._3dinterest.domain.yugyeong.upload.AmazonS3ResourceStorage;
 import com.team2._3dinterest.domain.yugyeong.upload.dto.ResponseFileDto;
 import com.team2._3dinterest.domain.yugyeong.upload.dto.RequestUploadDto;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,6 +14,7 @@ import java.util.List;
 public class FileUploadService {
     private final AmazonS3ResourceStorage amazonS3ResourceStorage;
 
+    @Transactional
     public List<ResponseFileDto> save(MultipartFile image, List<MultipartFile> fileList, RequestUploadDto requestUploadDto) {
         List<ResponseFileDto> responseFileDtoList = ResponseFileDto.multipartOf(fileList); // File들에 대한 정보를 저장
 
