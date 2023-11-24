@@ -43,9 +43,6 @@ dependencies {
     // SLF4J API
     implementation 'org.slf4j:slf4j-api:2.0.3'
 
-    // Logback (SLF4J implementation)
-    implementation 'ch.qos.logback:logback-classic:1.4.1'
-
     // JAXB
     implementation 'javax.xml.bind:jaxb-api:2.3.1'
 
