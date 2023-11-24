@@ -15,16 +15,19 @@ public class FileUploadService {
 
     public List<ResponseFileDto> save(MultipartFile image, List<MultipartFile> fileList, RequestUploadDto requestUploadDto) {
         List<ResponseFileDto> responseFileDtoList = ResponseFileDto.multipartOf(fileList); // File들에 대한 정보를 저장
+
+        // model
         for (int i = 0; i < fileList.size(); i++) {
             MultipartFile file = fileList.get(i);
             ResponseFileDto responseFileDto = responseFileDtoList.get(i);
 
-            amazonS3ResourceStorage.store(responseFileDto.getPath(), file); // 파일 업로드
+            amazonS3ResourceStorage.store(responseFileDto.getModel_path(), file); // model 업로드
         }
 
+        // image
         ResponseFileDto responseImage = ResponseFileDto.ResponseImage(image); // File들에 대한 정보를 저장
         responseFileDtoList.add(responseImage);
-        amazonS3ResourceStorage.store(responseImage.getPath(), image); // 썸네일 업로드
+        amazonS3ResourceStorage.store(responseImage.getImage_path(), image); // image 업로드
 
         return responseFileDtoList;
     }
