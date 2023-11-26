@@ -28,12 +28,4 @@ public class UserFile{
     private ResponseFileDto fileDetail;
 
     // 추가적인 필드 (예: 파일 설명, 태그 등)
-
-    public static UserFile createForUser(SiteUser user, ResponseFileDto fileDetail) {
-        return UserFile.builder()
-                .user(user)
-                .fileDetail(fileDetail)
-                // 다른 필요한 초기화 작업 추가
-                .build();
-    }
 }
