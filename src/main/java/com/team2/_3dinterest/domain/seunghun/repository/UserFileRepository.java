@@ -11,6 +11,8 @@ import java.util.List;
 public interface UserFileRepository extends JpaRepository<UserFile, Long> {
     List<UserFile> findByUser(SiteUser user);
     List<UserFile> findByPostID(String postID);
+    // 다음과 같이 findPostIDsByParentID 메서드를 추가
     @Query("SELECT DISTINCT uf.postID FROM UserFile uf WHERE uf.parentID = :parentID")
     List<String> findPostIDsByParentID(@Param("parentID") String parentID);
+
 }

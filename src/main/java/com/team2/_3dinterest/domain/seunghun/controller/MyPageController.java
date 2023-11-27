@@ -1,6 +1,7 @@
 package com.team2._3dinterest.domain.seunghun.controller;
 
 import com.team2._3dinterest.domain.seunghun.repository.FileDetailDTO;
+import com.team2._3dinterest.domain.seunghun.repository.ResponseFileDto;
 import com.team2._3dinterest.domain.seunghun.repository.UserDetailsDTO;
 import com.team2._3dinterest.domain.seunghun.repository.UserFileRepository;
 import com.team2._3dinterest.domain.seunghun.repository.UserRepository;
@@ -30,36 +31,53 @@ public class MyPageController {
 
     @GetMapping("/details")
     public ResponseEntity<UserDetailsDTO> getMyPageDetails() {
-        // 현재 로그인한 사용자의 정보를 가져오는 로직
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         Optional<SiteUser> user = userRepository.findByUsername(username);
 
-        if (user.isPresent()) {
-            UserDetailsDTO userDetailsDTO = UserDetailsDTO.from(user.get());
-            return ResponseEntity.ok(userDetailsDTO);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return user.map(value -> ResponseEntity.ok(UserDetailsDTO.from(value)))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping("/files")
-    public ResponseEntity<List<FileDetailDTO>> getMyFiles() {
-        // 현재 로그인한 사용자가 업로드한 파일 목록을 가져오는 로직
+    public ResponseEntity<List<ResponseFileDto>> getMyFiles() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         Optional<SiteUser> user = userRepository.findByUsername(username);
 
-        if (user.isPresent()) {
-            List<UserFile> userFiles = userFileRepository.findByUser(user.get());
-            List<FileDetailDTO> fileDetailDTOs = userFiles.stream()
-                    .map(userFile -> FileDetailDTO.from(userFile.getFileDetail()))
+        return user.map(siteUser -> {
+            List<UserFile> userFiles = userFileRepository.findByUser(siteUser);
+            List<ResponseFileDto> fileDetailDTOs = userFiles.stream()
+                    .map(userFile -> ResponseFileDto.builder()
+                            .id(userFile.getFileDetail().getParentID())
+                            .name(userFile.getFileDetail().getName())
+                            .format(userFile.getFileDetail().getFormat())
+                            .path(userFile.getFileDetail().getPath())
+                            .bytes(userFile.getFileDetail().getBytes())
+                            .createdAt(userFile.getFileDetail().getCreatedAt())
+                            .build())
                     .collect(Collectors.toList());
             return ResponseEntity.ok(fileDetailDTOs);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        }).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/files/byParentID")
+    public ResponseEntity<List<ResponseFileDto>> getFilesByParentID(@RequestParam String parentID) {
+        List<String> postIDs = userFileRepository.findPostIDsByParentID(parentID);
+
+        List<ResponseFileDto> fileDetailDTOs = postIDs.stream()
+                .map(postID -> userFileRepository.findByPostID(postID))
+                .flatMap(List::stream)
+                .map(userFile -> ResponseFileDto.builder()
+                        .id(userFile.getFileDetail().getParentID())
+                        .name(userFile.getFileDetail().getName())
+                        .format(userFile.getFileDetail().getFormat())
+                        .path(userFile.getFileDetail().getPath())
+                        .bytes(userFile.getFileDetail().getBytes())
+                        .createdAt(userFile.getFileDetail().getCreatedAt())
+                        .build())
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(fileDetailDTOs);
     }
 }
-
-
