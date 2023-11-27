@@ -6,7 +6,7 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "file_entity")
+@Table(name = "contribute_table")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
@@ -21,12 +21,4 @@ public class FileEntity {
 
     @Column(name = "post_id")
     private String postID;
-
-    private String name;
-    private String format;
-    private String path;
-    private long bytes;
-
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
 }

@@ -37,7 +37,6 @@ public class UserApiController {
 
     private final UserService userService;
     private final UserRepository userRepository;
-    private final FileDetailRepository fileDetailRepository;
     private final AuthenticationManager authenticationManager;
 
     @Value("${jwt.secret}") //application.yml에 설정된 시크릿 키 값을 가져옴
@@ -57,31 +56,6 @@ public class UserApiController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("이미 등록된 사용자입니다.");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-        }
-    }
-    @GetMapping("/{username}/details")
-    public ResponseEntity<UserDetailsDTO> getUserDetails(@PathVariable String username) {
-        Optional<SiteUser> user = userRepository.findByUsername(username);
-
-        if (user.isPresent()) {
-            UserDetailsDTO userDetailsDTO = UserDetailsDTO.from(user.get());
-            return ResponseEntity.ok(userDetailsDTO);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-    @GetMapping("/{username}/files")
-    public ResponseEntity<List<FileDetailDTO>> getUserFiles(@PathVariable String username) {
-        Optional<SiteUser> user = userRepository.findByUsername(username);
-
-        if (user.isPresent()) {
-            List<ResponseFileDto> files = fileDetailRepository.findByUserId(user.get().getUser_id());
-            List<FileDetailDTO> fileDetailDTOs = files.stream()
-                    .map(FileDetailDTO::from)
-                    .collect(Collectors.toList());
-            return ResponseEntity.ok(fileDetailDTOs);
-        } else {
-            return ResponseEntity.notFound().build();
         }
     }
     @PostMapping("/login")
@@ -113,16 +87,4 @@ public class UserApiController {
                 .compact();
     }
 
-    @GetMapping("/{username}/files/{fileId}")
-    public ResponseEntity<FileDetailDTO> getFileDetails(@PathVariable String username, @PathVariable String fileId) {
-        // 파일 상세 정보 조회 로직 추가
-        Optional<ResponseFileDto> fileDetail = fileDetailRepository.findById(fileId);
-
-        if (fileDetail.isPresent()) {
-            FileDetailDTO fileDetailDTO = FileDetailDTO.from(fileDetail.get());
-            return ResponseEntity.ok(fileDetailDTO);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
 }

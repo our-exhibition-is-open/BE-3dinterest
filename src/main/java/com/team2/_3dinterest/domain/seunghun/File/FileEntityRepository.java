@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface FileEntityRepository extends JpaRepository<FileEntity, Long> {
     List<FileEntity> findByParentID(String parentID);
+    List<String> findPostIDsByParentID(String parentID);
 }
