@@ -1,4 +1,5 @@
 package com.team2._3dinterest.domain.seunghun.service;
+
 import com.team2._3dinterest.domain.seunghun.repository.UserRepository;
 import com.team2._3dinterest.domain.seunghun.user.SiteUser;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,10 +15,12 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     public SiteUser create(String username, String email, String password) {
-        SiteUser user = new SiteUser();
-        user.setUsername(username);
-        user.setEmail(email);
-        user.setPassword(passwordEncoder.encode(password));
+        SiteUser user = SiteUser.builder()
+                .userName(username)
+                .userEmail(email)
+                .userPassword(passwordEncoder.encode(password))
+                // 추가 필드에 대한 설정도 필요하다면 여기에 추가
+                .build();
         this.userRepository.save(user);
         return user;
     }

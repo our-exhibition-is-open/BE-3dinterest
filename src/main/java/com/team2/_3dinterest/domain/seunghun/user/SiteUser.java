@@ -1,24 +1,45 @@
 package com.team2._3dinterest.domain.seunghun.user;
 
-import jakarta.persistence.*;
+import lombok.*;
 
-import lombok.Getter;
-import lombok.Setter;
+import javax.persistence.*;
+import java.util.Objects;
 
+@Entity
+@Table(name = "user_table")
 @Getter
 @Setter
-@Entity
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder
 public class SiteUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;
+    @Column(name = "user_id")
+    private Long userId;
 
-    @Column(unique = true)
-    private String username;
+    @Column(name = "user_name")
+    private String userName;
 
-    private String password;
+    @Column(name = "user_email")
+    private String userEmail;
 
-    @Column(unique = true)
-    private String email;
+    @Column(name = "user_password")
+    private String userPassword;
+
+    @Column(name = "tag_a_cnt")
+    private int tagACnt;
+
+    @Column(name = "tag_b_cnt")
+    private int tagBCnt;
+
+    @Column(name = "tag_c_cnt")
+    private int tagCCnt;
+
+    @Column(name = "tag_d_cnt")
+    private int tagDCnt;
+
+    // 추가 필드 및 메서드는 필요에 따라 정의
 }

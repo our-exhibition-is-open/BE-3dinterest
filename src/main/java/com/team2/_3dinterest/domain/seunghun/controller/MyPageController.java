@@ -1,13 +1,13 @@
 package com.team2._3dinterest.domain.seunghun.controller;
 
-import com.team2._3dinterest.domain.seunghun.repository.FileDetailDTO;
-import com.team2._3dinterest.domain.seunghun.repository.UserDetailsDTO;
+import com.team2._3dinterest.domain.seunghun.File.FileService;
+import com.team2._3dinterest.domain.seunghun.repository.ResponseFileDto;
+import com.team2._3dinterest.domain.seunghun.repository.UserEntityDTO;
 import com.team2._3dinterest.domain.seunghun.repository.UserFileRepository;
 import com.team2._3dinterest.domain.seunghun.repository.UserRepository;
 import com.team2._3dinterest.domain.seunghun.user.SiteUser;
-import com.team2._3dinterest.domain.seunghun.user.UserFile;
+import com.team2._3dinterest.domain.seunghun.user.UserEntity;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,37 +29,36 @@ public class MyPageController {
     private final UserFileRepository userFileRepository;
 
     @GetMapping("/details")
-    public ResponseEntity<UserDetailsDTO> getMyPageDetails() {
+    public ResponseEntity<UserEntityDTO> getMyPageDetails() {
         // 현재 로그인한 사용자의 정보를 가져오는 로직
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         Optional<SiteUser> user = userRepository.findByUsername(username);
 
-        if (user.isPresent()) {
-            UserDetailsDTO userDetailsDTO = UserDetailsDTO.from(user.get());
-            return ResponseEntity.ok(userDetailsDTO);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        // 사용자 정보가 있을 경우 DTO로 변환하여 반환
+        return user.map(value -> ResponseEntity.ok(UserEntityDTO.from(value)))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/files")
-    public ResponseEntity<List<FileDetailDTO>> getMyFiles() {
-        // 현재 로그인한 사용자가 업로드한 파일 목록을 가져오는 로직
+    @GetMapping("/user-files")
+    public ResponseEntity<List<UserEntity>> getUserFiles() {
+        // 현재 로그인한 사용자의 정보를 가져오는 로직
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         Optional<SiteUser> user = userRepository.findByUsername(username);
 
-        if (user.isPresent()) {
-            List<UserFile> userFiles = userFileRepository.findByUser(user.get());
-            List<FileDetailDTO> fileDetailDTOs = userFiles.stream()
-                    .map(userFile -> FileDetailDTO.from(userFile.getFileDetail()))
-                    .collect(Collectors.toList());
-            return ResponseEntity.ok(fileDetailDTOs);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        // 사용자 정보가 있을 경우 해당 사용자가 올린 파일 정보를 조회하여 반환
+        return user.map(siteUser -> {
+            List<UserEntity> userFiles = userFileRepository.findByUserId(siteUser.getUserId());
+            return ResponseEntity.ok(userFiles);
+        }).orElseGet(() -> ResponseEntity.notFound().build());
     }
+    private final FileService fileService;
+
+    @GetMapping("/byParentID")
+    public ResponseEntity<List<ResponseFileDto>> getFilesByParentID(@RequestParam String parentID) {
+        List<ResponseFileDto> fileDetailDTOs = fileService.getFilesByParentID(parentID);
+        return ResponseEntity.ok(fileDetailDTOs);
+    }
+
 }
-
-
