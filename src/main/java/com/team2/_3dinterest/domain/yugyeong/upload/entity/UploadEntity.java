@@ -1,11 +1,9 @@
 package com.team2._3dinterest.domain.yugyeong.upload.entity;
 
 import com.team2._3dinterest.domain.yugyeong.upload.dto.RequestUploadDto;
-import com.team2._3dinterest.domain.yugyeong.upload.dto.ResponseFileDto;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Data

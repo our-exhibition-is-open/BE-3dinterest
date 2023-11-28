@@ -9,7 +9,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -22,16 +22,9 @@ public class FileUploadService {
         List<ResponseFileDto> responseFileDtoList = ResponseFileDto.multipartOf(fileList); // File들에 대한 정보를 저장
 
         // model
-        for (int i = 0; i < fileList.size(); i++) {
-            MultipartFile file = fileList.get(i);
-            ResponseFileDto responseFileDto = responseFileDtoList.get(i);
-
-            amazonS3ResourceStorage.store(responseFileDto.getModel_path(), file); // model s3 업로드
-
-            // Dto를 UploadEntity로 변환
-            UploadEntity uploadEntity = UploadEntity.toEntity(requestUploadDto, responseFileDtoList);
-            uploadRepository.save(uploadEntity);
-        }
+        ResponseFileDto responseModelDto = ResponseFileDto.multipartOf(model);
+        String model_url = responseModelDto.getPath();
+        amazonS3ResourceStorage.store(model_url, model); // model s3 업로드
 
         // image
         ResponseFileDto responseImage = ResponseFileDto.ResponseImage(image); // File들에 대한 정보를 저장
@@ -43,6 +36,6 @@ public class FileUploadService {
         UploadEntity uploadEntity = UploadEntity.toEntity(requestUploadDto, responseImage);
         uploadRepository.save(uploadEntity);
 
-        return responseFileDtoList;
+        return responseModelDto;
     }
 }

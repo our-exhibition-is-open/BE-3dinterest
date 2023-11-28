@@ -5,8 +5,6 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @Getter
@@ -15,9 +13,6 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
 public class ResponseFileDto {
-    private String image;
-    private List<String> modelList;
-
     private String id;      // 36자리의 UUID
     private String name;    // 파일 업로드 시점의 파일명
     private String format;  // 파일 확장자
@@ -29,13 +24,9 @@ public class ResponseFileDto {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime upload_date = LocalDateTime.now();
 
-    // model
-    public static List<ResponseFileDto> multipartOf(List<MultipartFile> modelList) {
-        List<ResponseFileDto> responseFileDtoList = new ArrayList<>();
-
-        for (MultipartFile file : modelList) {
-            final String fileId = MultipartUtil.createUUID();
-            final String format = MultipartUtil.getFormat(file.getContentType());
+    public static ResponseFileDto multipartOf(MultipartFile file) {
+        final String fileId = MultipartUtil.createUUID();
+        final String format = MultipartUtil.getFormat(file.getContentType());
 
             ResponseFileDto responseFileDto = ResponseFileDto.builder()
                     .id(fileId)
