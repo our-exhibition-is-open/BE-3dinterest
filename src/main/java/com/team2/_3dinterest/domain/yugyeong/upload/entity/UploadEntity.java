@@ -29,9 +29,10 @@ public class UploadEntity {
     private int like_cnt;
     private LocalDateTime upload_date;
 
-    public static UploadEntity toEntity(RequestUploadDto Request, ResponseFileDto Response) {
-        return UploadEntity.builder()
+    // dto를 entity로 변환하는 toEntity
     public static UploadEntity toEntity(RequestUploadDto Request, List<ResponseFileDto> responseFileDtoList) {
+        UploadEntity.UploadEntityBuilder builder = UploadEntity.builder()
+                // RequestUploadDto 추가
                 .user_id(Request.getUser_id())
                 .title(Request.getTitle())
                 .model_url(Response.getModel_path())
