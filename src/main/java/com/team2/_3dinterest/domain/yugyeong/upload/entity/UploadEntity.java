@@ -28,14 +28,19 @@ public class UploadEntity {
     private LocalDateTime upload_date;
 
     // dto를 entity로 변환하는 toEntity
-    public static UploadEntity toEntity(RequestUploadDto Request, List<ResponseFileDto> responseFileDtoList) {
+    public static UploadEntity toEntity(RequestUploadDto Request, String model_url, String image_url, LocalDateTime upload_date) {
         UploadEntity.UploadEntityBuilder builder = UploadEntity.builder()
-                // RequestUploadDto 추가
+
+                // post_id와 like_cnt 제외
                 .user_id(Request.getUser_id())
                 .title(Request.getTitle())
+                .model_url(model_url)
+                .image_url(image_url)
                 .tag_a(Request.isTagA())
                 .tag_b(Request.isTagB())
                 .tag_c(Request.isTagC())
+                .tag_d(Request.isTagD())
+                .upload_date(upload_date);
 
         return builder.build();
     }

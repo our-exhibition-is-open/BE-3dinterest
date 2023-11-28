@@ -18,8 +18,7 @@ public class FileUploadService {
     private final UploadRepository uploadRepository;
 
     @Transactional
-    public List<ResponseFileDto> save(MultipartFile image, List<MultipartFile> fileList, RequestUploadDto requestUploadDto) {
-        List<ResponseFileDto> responseFileDtoList = ResponseFileDto.multipartOf(fileList); // File들에 대한 정보를 저장
+    public ResponseFileDto save(MultipartFile image, MultipartFile model, RequestUploadDto requestUploadDto) {
 
         // model
         ResponseFileDto responseModelDto = ResponseFileDto.multipartOf(model);
@@ -27,7 +26,9 @@ public class FileUploadService {
         amazonS3ResourceStorage.store(model_url, model); // model s3 업로드
 
         // image
-        ResponseFileDto responseImage = ResponseFileDto.ResponseImage(image); // File들에 대한 정보를 저장
+        ResponseFileDto responseImageDto = ResponseFileDto.multipartOf(image); // file에 대한 정보를 저장
+        String image_url = responseImageDto.getPath();
+        amazonS3ResourceStorage.store(image_url, image); // image s3 업로드
 
         responseFileDtoList.add(responseImage);
         amazonS3ResourceStorage.store(responseImage.getImage_path(), image); // image s3 업로드
