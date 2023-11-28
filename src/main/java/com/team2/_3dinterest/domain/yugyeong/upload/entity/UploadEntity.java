@@ -5,7 +5,7 @@ import com.team2._3dinterest.domain.yugyeong.upload.dto.ResponseFileDto;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter; // 포멧 확인
+import java.util.List;
 
 @Entity
 @Data
