@@ -36,21 +36,6 @@ public class UploadEntity {
                 .tag_a(Request.isTagA())
                 .tag_b(Request.isTagB())
                 .tag_c(Request.isTagC())
-                .tag_d(Request.isTagD());
-
-        // 여러 개의 responseFileDtoList 추가
-        for (ResponseFileDto responseFileDto : responseFileDtoList) {
-            // model 추가
-            builder.model_url(responseFileDto.getModel_path());
-
-            // image가 있는 경우에만 추가(한 번)
-            if (responseFileDto.getImage_path() != null) {
-                builder.image_url(responseFileDto.getImage_path());
-            }
-
-            // 파일을 올린 시점의 upload_date 추가
-            builder.upload_date(responseFileDto.getUpload_date());
-        }
 
         return builder.build();
     }
