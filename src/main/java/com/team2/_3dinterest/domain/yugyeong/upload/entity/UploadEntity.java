@@ -31,6 +31,7 @@ public class UploadEntity {
 
     public static UploadEntity toEntity(RequestUploadDto Request, ResponseFileDto Response) {
         return UploadEntity.builder()
+    public static UploadEntity toEntity(RequestUploadDto Request, List<ResponseFileDto> responseFileDtoList) {
                 .user_id(Request.getUser_id())
                 .title(Request.getTitle())
                 .model_url(Response.getModel_path())

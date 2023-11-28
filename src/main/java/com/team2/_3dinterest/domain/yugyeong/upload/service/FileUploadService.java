@@ -29,7 +29,7 @@ public class FileUploadService {
             amazonS3ResourceStorage.store(responseFileDto.getModel_path(), file); // model s3 업로드
 
             // Dto를 UploadEntity로 변환
-            UploadEntity uploadEntity = UploadEntity.toEntity(requestUploadDto, responseFileDto);
+            UploadEntity uploadEntity = UploadEntity.toEntity(requestUploadDto, responseFileDtoList);
             uploadRepository.save(uploadEntity);
         }
 
