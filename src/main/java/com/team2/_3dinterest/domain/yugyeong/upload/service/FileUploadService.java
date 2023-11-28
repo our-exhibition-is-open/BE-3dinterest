@@ -30,11 +30,9 @@ public class FileUploadService {
         String image_url = responseImageDto.getPath();
         amazonS3ResourceStorage.store(image_url, image); // image s3 업로드
 
-        responseFileDtoList.add(responseImage);
-        amazonS3ResourceStorage.store(responseImage.getImage_path(), image); // image s3 업로드
+        LocalDateTime upload_date = responseModelDto.getUpload_date();
 
-        // Dto를 UploadEntity로 변환
-        UploadEntity uploadEntity = UploadEntity.toEntity(requestUploadDto, responseImage);
+        UploadEntity uploadEntity = UploadEntity.toEntity(requestUploadDto, model_url, image_url, upload_date); // Dto를 UploadEntity로 변환
         uploadRepository.save(uploadEntity);
 
         return responseModelDto;
