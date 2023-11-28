@@ -28,7 +28,9 @@ public final class MultipartUtil {
      */
     public static String getFormat(String contentType) {
         if (StringUtils.hasText(contentType)) {
-            return contentType.substring(contentType.lastIndexOf('/') + 1);
+            // ContentType에서 + 이후의 문자열을 무시하고 반환
+            String[] parts = contentType.split("\\+");
+            return parts[0].substring(contentType.lastIndexOf('/') + 1);
         }
         return null;
     }
