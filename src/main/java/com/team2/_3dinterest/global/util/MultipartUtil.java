@@ -22,7 +22,7 @@ public final class MultipartUtil {
     }
 
     /**
-     * Multipart 의 ContentType 값에서 / 이후 확장자만 잘라냅니다.
+     * Multipart의 ContentType 값에서 / 이후 확장자만 잘라냅니다.
      * @param contentType ex) image/png
      * @return ex) png
      */
@@ -41,6 +41,6 @@ public final class MultipartUtil {
      * @param format 확장자
      */
     public static String createPath(String fileId, String format) {
-        return String.format("%s/%s.%s", BASE_DIR, fileId, format);
+        return String.format("%s.%s", fileId, format);
     }
 }
