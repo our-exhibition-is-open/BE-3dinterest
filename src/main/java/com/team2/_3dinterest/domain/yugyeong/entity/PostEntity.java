@@ -15,7 +15,8 @@ import java.time.LocalDateTime;
 public class PostEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int post_id;
+    @Column(name="post_id")
+    private int postId;
     private String user_id;
     private String title;
     private String model_url;
