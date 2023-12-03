@@ -5,6 +5,7 @@ import com.team2._3dinterest.domain.yugyeong.entity.DownloadEntity;
 import com.team2._3dinterest.domain.yugyeong.repository.DownloadRepository;
 import com.team2._3dinterest.domain.yugyeong.entity.PostEntity;
 import com.team2._3dinterest.domain.yugyeong.repository.PostRepository;
+import com.team2._3dinterest.global.common.s3.S3Download;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

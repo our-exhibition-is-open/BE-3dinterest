@@ -1,6 +1,6 @@
 package com.team2._3dinterest.domain.yugyeong.upload.service;
 
-import com.team2._3dinterest.domain.yugyeong.upload.s3.AmazonS3ResourceStorage;
+import com.team2._3dinterest.global.common.s3.AmazonS3ResourceStorage;
 import com.team2._3dinterest.domain.yugyeong.upload.dto.ResponseUploadDto;
 import com.team2._3dinterest.domain.yugyeong.upload.dto.RequestUploadDto;
 import com.team2._3dinterest.domain.yugyeong.entity.PostEntity;
