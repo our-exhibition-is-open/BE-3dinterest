@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UploadEntity {
+public class PostEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int post_id;
@@ -28,9 +28,8 @@ public class UploadEntity {
     private LocalDateTime upload_date;
 
     // dto를 entity로 변환하는 toEntity
-    public static UploadEntity toEntity(RequestUploadDto Request, String model_url, String image_url, LocalDateTime upload_date) {
-        UploadEntity.UploadEntityBuilder builder = UploadEntity.builder()
-
+    public static PostEntity toEntity(RequestUploadDto Request, String model_url, String image_url, LocalDateTime upload_date) {
+        PostEntity.PostEntityBuilder builder = PostEntity.builder()
                 // post_id와 like_cnt 제외
                 .user_id(Request.getUser_id())
                 .title(Request.getTitle())
