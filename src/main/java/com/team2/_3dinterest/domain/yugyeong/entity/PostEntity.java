@@ -1,4 +1,4 @@
-package com.team2._3dinterest.domain.yugyeong.upload.entity;
+package com.team2._3dinterest.domain.yugyeong.entity;
 
 import com.team2._3dinterest.domain.yugyeong.upload.dto.RequestUploadDto;
 import jakarta.persistence.*;
