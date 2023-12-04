@@ -12,6 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 public class DownloadEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String user_id;
