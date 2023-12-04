@@ -26,12 +26,12 @@ public class DownloadService {
             // post_id를 조회 후 해당하는 PostEntity를 가져온다.
             PostEntity postEntity = postRepository.findByPostId(requestDownloadDto.getPost_id());
 
-        if (postEntity != null) {
-            // DownloadEntity 생성 및 저장
-            DownloadEntity downloadEntity = DownloadEntity.builder()
-                    .user_id(requestDownloadDto.getUser_id())
-                    .postId(postEntity)
-                    .build();
+            if (postEntity != null) {
+                // DownloadEntity 생성 및 저장
+                DownloadEntity downloadEntity = DownloadEntity.builder()
+                        .user_id(requestDownloadDto.getUser_id())
+                        .postId(postEntity)
+                        .build();
 
             downloadRepository.save(downloadEntity);
 
