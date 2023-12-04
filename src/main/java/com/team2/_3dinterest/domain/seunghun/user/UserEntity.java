@@ -1,8 +1,9 @@
 package com.team2._3dinterest.domain.seunghun.user;
 
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity

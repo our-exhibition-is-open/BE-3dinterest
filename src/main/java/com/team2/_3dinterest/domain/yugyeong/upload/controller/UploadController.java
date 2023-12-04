@@ -9,7 +9,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/upload",
@@ -20,11 +19,11 @@ public class UploadController {
     private final FileUploadService fileUploadService;
 
     @PostMapping
-    public ResponseEntity<List<ResponseFileDto>> post(
-            @Valid @RequestPart(value =  "image") MultipartFile image,
-            @Valid @RequestPart(value =  "file") List<MultipartFile> fileList,
+    public ResponseEntity<ResponseFileDto> post(
+            @Valid @RequestPart(value = "image") MultipartFile image,
+            @Valid @RequestPart(value = "model") MultipartFile model,
             @Valid @RequestPart(value = "requestUploadDto") RequestUploadDto requestUploadDto) {
 
-         return ResponseEntity.ok(fileUploadService.save(image, fileList, requestUploadDto)); // 성공, 200 OK 생성
+        return ResponseEntity.ok(fileUploadService.save(image, model, requestUploadDto)); // 성공, 200 OK 생성
     }
 }

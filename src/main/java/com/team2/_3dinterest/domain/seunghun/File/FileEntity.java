@@ -3,7 +3,6 @@ package com.team2._3dinterest.domain.seunghun.File;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "contribute_table")
