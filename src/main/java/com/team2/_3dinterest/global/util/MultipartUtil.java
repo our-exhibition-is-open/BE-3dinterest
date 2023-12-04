@@ -22,15 +22,14 @@ public final class MultipartUtil {
     }
 
     /**
-     * Multipart의 ContentType 값에서 / 이후 확장자만 잘라냅니다.
-     * @param contentType ex) image/png
-     * @return ex) png
+     * FileName에서 마지막 '.' 이후의 문자열을 잘라냅니다.
+     * @param fileName
+     * @return ex) gltf, glb
      */
-    public static String getFormat(String contentType) {
-        if (StringUtils.hasText(contentType)) {
-            // ContentType에서 + 이후의 문자열을 무시하고 반환
-            String[] parts = contentType.split("\\+");
-            return parts[0].substring(contentType.lastIndexOf('/') + 1);
+    public static String getFormat(String fileName) {
+        if (StringUtils.hasText(fileName)) {
+            // FileName에서 마지막 '.' 이후의 문자열을 반환
+            return fileName.substring(fileName.lastIndexOf('.') + 1);
         }
         return null;
     }

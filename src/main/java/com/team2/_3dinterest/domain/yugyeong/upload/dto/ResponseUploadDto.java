@@ -25,7 +25,7 @@ public class ResponseUploadDto {
 
     public static ResponseUploadDto multipartOf(MultipartFile file) {
         final String fileId = MultipartUtil.createUUID();
-        final String format = MultipartUtil.getFormat(file.getContentType());
+        final String format = MultipartUtil.getFormat(file.getOriginalFilename());
 
         return ResponseUploadDto.builder()
                 .id(fileId)
