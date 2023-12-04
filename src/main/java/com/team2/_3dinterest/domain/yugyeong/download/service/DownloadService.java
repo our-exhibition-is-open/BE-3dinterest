@@ -10,6 +10,7 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import java.io.IOException;
 
 @Service
 @RequiredArgsConstructor
@@ -21,6 +22,7 @@ public class DownloadService {
     public String download(RequestDownloadDto requestDownloadDto) {
         // post_id를 조회 후 해당하는 PostEntity를 가져온다.
         PostEntity postEntity = postRepository.findByPostId(requestDownloadDto.getPost_id());
+        try {
 
         if (postEntity != null) {
             // DownloadEntity 생성 및 저장
@@ -35,9 +37,13 @@ public class DownloadService {
 
 
             return postEntity.getModel_url(); // 다운로드 후 모델 URL 반환
-        } else {
-            // post_id에 해당하는 정보가 없을 경우 예외 처리
-            throw new EntityNotFoundException("post_id에 해당하는 정보가 없습니다.");
+            } else {
+                // post_id에 해당하는 정보가 없을 경우 예외 처리
+                throw new EntityNotFoundException("post_id에 해당하는 정보가 없습니다.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("모델 다운로드 중에 오류가 발생했습니다.");
         }
     }
 }
