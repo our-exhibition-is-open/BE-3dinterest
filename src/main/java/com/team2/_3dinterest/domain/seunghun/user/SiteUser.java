@@ -1,8 +1,9 @@
 package com.team2._3dinterest.domain.seunghun.user;
 
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
+
 
 
 
@@ -19,7 +20,7 @@ public class SiteUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private Long userId;
+    private String userId;
 
     @Column(name = "user_name")
     private String userName;
