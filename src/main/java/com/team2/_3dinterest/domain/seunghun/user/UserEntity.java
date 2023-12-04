@@ -25,15 +25,15 @@ public class UserEntity {
     private Long userId;
 
     private String title;
-    private String modelUrl;
-    private String imageUrl;
-    private String tagA;
-    private String tagB;
-    private String tagC;
-    private String tagD;
-    private int likeCnt;
+    private String model_url;
+    private String image_url;
+    private String tag_a;
+    private String tag_b;
+    private String tag_c;
+    private String tag_d;
+    private int like_cnt;
 
     @Column(name = "upload_date")
-    private LocalDateTime uploadDate;
+    private LocalDateTime upload_date;
 
 }
