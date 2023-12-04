@@ -33,7 +33,7 @@ public class DownloadService {
                         .postId(postEntity)
                         .build();
 
-            downloadRepository.save(downloadEntity);
+                downloadRepository.save(downloadEntity);
 
                 // S3에서 모델을 다운로드하고 처리하는 로직을 구현
                 // String original_name = postEntity.getOriginal_name();
