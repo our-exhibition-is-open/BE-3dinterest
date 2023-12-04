@@ -1,4 +1,4 @@
-package com.team2._3dinterest.domain.yugyeong.upload.s3;
+package com.team2._3dinterest.global.common.s3;
 
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
