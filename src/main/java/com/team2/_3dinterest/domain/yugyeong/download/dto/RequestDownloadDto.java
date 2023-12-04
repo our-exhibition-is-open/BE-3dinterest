@@ -3,7 +3,6 @@ package com.team2._3dinterest.domain.yugyeong.download.dto;
 import com.team2._3dinterest.domain.yugyeong.entity.DownloadEntity;
 import com.team2._3dinterest.domain.yugyeong.entity.PostEntity;
 import lombok.*;
-
 import javax.validation.constraints.NotNull;
 
 @Data
@@ -23,11 +22,9 @@ public class RequestDownloadDto {
         PostEntity postEntity = new PostEntity();
         postEntity.setPostId(post_id);
 
-        DownloadEntity downloadEntity = DownloadEntity.builder()
+        return DownloadEntity.builder()
                 .user_id(user_id)
                 .postId(postEntity)
                 .build();
-
-        return downloadEntity;
     }
 }
