@@ -48,7 +48,7 @@ public class MyPageController {
 
         // 사용자 정보가 있을 경우 해당 사용자가 올린 파일 정보를 조회하여 반환
         return user.map(siteUser -> {
-            List<UserEntity> userFiles = userFileRepository.findByUserId(siteUser.getUserId());
+            List<UserEntity> userFiles = userFileRepository.findByUserId(String.valueOf(siteUser.getUserId()));
             return ResponseEntity.ok(userFiles);
         }).orElseGet(() -> ResponseEntity.notFound().build());
     }

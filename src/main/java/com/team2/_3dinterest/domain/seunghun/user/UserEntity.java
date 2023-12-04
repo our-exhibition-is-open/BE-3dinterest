@@ -19,10 +19,10 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id")
-    private Long postId;
+    private String postId;
 
     @Column(name = "user_id")
-    private Long userId;
+    private String userId;
 
     private String title;
     private String model_url;
