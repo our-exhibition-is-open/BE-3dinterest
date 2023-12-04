@@ -4,6 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 
+
+
 @Entity
 @Table(name = "user_table")
 @Getter
