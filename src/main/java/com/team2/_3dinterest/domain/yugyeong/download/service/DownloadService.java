@@ -9,6 +9,7 @@ import com.team2._3dinterest.global.common.s3.S3Download;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
 
@@ -17,9 +18,10 @@ import java.io.IOException;
 public class DownloadService {
     private final DownloadRepository downloadRepository;
     private final PostRepository postRepository;
+    private final S3Download s3Download;
 
     @Transactional
-    public String download(RequestDownloadDto requestDownloadDto) {
+    public ResponseEntity<byte[]> download(RequestDownloadDto requestDownloadDto) {
         try {
             // post_id를 조회 후 해당하는 PostEntity를 가져온다.
             PostEntity postEntity = postRepository.findByPostId(requestDownloadDto.getPost_id());
@@ -33,10 +35,11 @@ public class DownloadService {
 
             downloadRepository.save(downloadEntity);
 
-            // 여기에서 S3에서 모델을 다운로드하고 처리하는 로직을 구현
+                // S3에서 모델을 다운로드하고 처리하는 로직을 구현
+                // String original_name = postEntity.getOriginal_name();
+                String model_url = postEntity.getModel_url();
 
-
-            return postEntity.getModel_url(); // 다운로드 후 모델 URL 반환
+                return s3Download.getObject(model_url); // s3에서 다운로드 후 byte 배열 반환
             } else {
                 // post_id에 해당하는 정보가 없을 경우 예외 처리
                 throw new EntityNotFoundException("post_id에 해당하는 정보가 없습니다.");
