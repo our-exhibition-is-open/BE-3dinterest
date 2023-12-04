@@ -23,7 +23,7 @@ public class FileService {
 
         // 각 postID에 해당하는 UserEntity 조회하여 ResponseFileDto로 매핑
         return postIDs.stream()
-                .flatMap(postID -> userFileRepository.findByPostID(postID).stream())
+                .flatMap(postID -> userFileRepository.findByPostId(postID).stream())
                 .map(ResponseFileDto::from)
                 .collect(Collectors.toList());
     }
