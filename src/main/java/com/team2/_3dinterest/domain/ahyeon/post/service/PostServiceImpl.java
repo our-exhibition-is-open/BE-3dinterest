@@ -4,7 +4,7 @@ package com.team2._3dinterest.domain.ahyeon.post.service;
 import com.team2._3dinterest.domain.ahyeon.heart.HeartEntity;
 import com.team2._3dinterest.domain.ahyeon.heart.HeartRepository;
 import com.team2._3dinterest.domain.ahyeon.post.Post;
-import com.team2._3dinterest.domain.ahyeon.post.PostRepository;
+import com.team2._3dinterest.domain.ahyeon.post.PostRepo;
 import com.team2._3dinterest.domain.ahyeon.post.entity.PostEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ import java.util.Optional;
 public class PostServiceImpl implements PostService {
 
     @Autowired
-    private PostRepository postRepository;
+    private PostRepo postRepository;
 
     @Autowired
     private HeartRepository heartRepository;
