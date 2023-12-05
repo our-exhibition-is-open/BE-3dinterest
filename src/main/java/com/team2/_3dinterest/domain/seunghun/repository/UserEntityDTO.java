@@ -35,7 +35,7 @@ public class UserEntityDTO {
     public static UserEntityDTO from(SiteUser siteUser) {
         return UserEntityDTO.builder()
                 // 필요한 필드들을 SiteUser에서 가져와서 설정
-                .userId(siteUser.getUserId())
+                .userId(Long.valueOf(siteUser.getUserId()))
                 .userName(siteUser.getUserName())
                 .userEmail(siteUser.getUserEmail())
                 .tagACnt(siteUser.getTagACnt())

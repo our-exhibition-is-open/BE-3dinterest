@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/mypage")
@@ -33,7 +32,7 @@ public class MyPageController {
         // 현재 로그인한 사용자의 정보를 가져오는 로직
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        Optional<SiteUser> user = userRepository.findByUsername(username);
+        Optional<SiteUser> user = userRepository.findByUserName(username);
 
         // 사용자 정보가 있을 경우 DTO로 변환하여 반환
         return user.map(value -> ResponseEntity.ok(UserEntityDTO.from(value)))
@@ -45,7 +44,7 @@ public class MyPageController {
         // 현재 로그인한 사용자의 정보를 가져오는 로직
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        Optional<SiteUser> user = userRepository.findByUsername(username);
+        Optional<SiteUser> user = userRepository.findByUserName(username);
 
         // 사용자 정보가 있을 경우 해당 사용자가 올린 파일 정보를 조회하여 반환
         return user.map(siteUser -> {

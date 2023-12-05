@@ -1,9 +1,11 @@
 package com.team2._3dinterest.domain.seunghun.user;
 
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
-import java.util.Objects;
+
+
+
 
 @Entity
 @Table(name = "user_table")
@@ -18,7 +20,7 @@ public class SiteUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private Long userId;
+    private String userId;
 
     @Column(name = "user_name")
     private String userName;
@@ -41,5 +43,4 @@ public class SiteUser {
     @Column(name = "tag_d_cnt")
     private int tagDCnt;
 
-    // 추가 필드 및 메서드는 필요에 따라 정의
 }
