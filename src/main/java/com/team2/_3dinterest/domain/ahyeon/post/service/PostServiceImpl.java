@@ -5,7 +5,7 @@ import com.team2._3dinterest.domain.ahyeon.heart.HeartEntity;
 import com.team2._3dinterest.domain.ahyeon.heart.HeartRepository;
 import com.team2._3dinterest.domain.ahyeon.post.Post;
 import com.team2._3dinterest.domain.ahyeon.post.PostRepo;
-import com.team2._3dinterest.domain.ahyeon.post.entity.PostEntity;
+import com.team2._3dinterest.domain.ahyeon.post.entity.PostEnti;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +30,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void toggleLike(Long postId, String userId) {
-        Optional<PostEntity> postEntityOptional = postRepository.findById(postId);
+        Optional<PostEnti> postEntityOptional = postRepository.findById(postId);
 
         if (postEntityOptional.isPresent()) {
             Post post = mapToPost(postEntityOptional.get());
@@ -56,7 +56,7 @@ public class PostServiceImpl implements PostService {
             throw new RuntimeException("게시물을 찾을 수 없습니다. postId: " + postId);
         }
     }
-    private Post mapToPost(PostEntity postEntity) {
+    private Post mapToPost(PostEnti postEntity) {
         Post post = new Post();
         post.setPostId(postEntity.getPostId());
         post.setLikes(postEntity.getLikes());
@@ -64,8 +64,8 @@ public class PostServiceImpl implements PostService {
         return post;
     }
 
-    private PostEntity mapToPostEntity(Post post) {
-        PostEntity postEntity = new PostEntity();
+    private PostEnti mapToPostEntity(Post post) {
+        PostEnti postEntity = new PostEnti();
         postEntity.setPostId(post.getPostId());
         postEntity.setLikes(post.getLikes());
         // 나머지 필드들도 필요에 따라 설정

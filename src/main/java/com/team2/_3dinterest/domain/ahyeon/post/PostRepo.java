@@ -1,12 +1,12 @@
 package com.team2._3dinterest.domain.ahyeon.post;
 
 
-import com.team2._3dinterest.domain.ahyeon.post.entity.PostEntity;
+import com.team2._3dinterest.domain.ahyeon.post.entity.PostEnti;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PostRepo extends JpaRepository<PostEntity, Long> {
+public interface PostRepo extends JpaRepository<PostEnti, Long> {
 
 
 

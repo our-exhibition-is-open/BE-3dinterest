@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "user_table")
-public class UserEntity {
+public class UserEnti {
 
     @Id
     @Column(name = "user_id", nullable = false, length = 100)
@@ -24,11 +24,11 @@ public class UserEntity {
     // 생성자, getter, setter 등 필요한 메서드 추가
 
     // 기본 생성자
-    public UserEntity() {
+    public UserEnti() {
     }
 
     // 매개변수를 받는 생성자
-    public UserEntity(String userId, String userPassword, int tagACnt) {
+    public UserEnti(String userId, String userPassword, int tagACnt) {
         this.userId = userId;
         this.userPassword = userPassword;
         this.tagACnt = tagACnt;
