@@ -29,7 +29,7 @@ public class DownloadService {
             if (postEntity != null) {
                 // DownloadEntity 생성 및 저장
                 DownloadEntity downloadEntity = DownloadEntity.builder()
-                        .user_id(requestDownloadDto.getUser_id())
+                        .userId(requestDownloadDto.getUser_id())
                         .postId(postEntity)
                         .build();
 
