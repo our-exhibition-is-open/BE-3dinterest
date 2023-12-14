@@ -36,7 +36,6 @@ public class DownloadService {
                 downloadRepository.save(downloadEntity);
 
                 // S3에서 모델을 다운로드하고 처리하는 로직을 구현
-                // String original_name = postEntity.getOriginal_name();
                 String model_url = postEntity.getModel_url();
 
                 return s3Download.getObject(model_url); // s3에서 다운로드 후 byte 배열 반환
