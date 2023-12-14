@@ -1,7 +1,5 @@
 package com.team2._3dinterest.domain.yugyeong.download.dto;
 
-import com.team2._3dinterest.domain.yugyeong.entity.DownloadEntity;
-import com.team2._3dinterest.domain.yugyeong.entity.PostEntity;
 import lombok.*;
 import javax.validation.constraints.NotNull;
 
