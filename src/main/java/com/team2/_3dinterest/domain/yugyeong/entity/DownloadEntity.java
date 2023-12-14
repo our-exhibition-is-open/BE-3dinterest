@@ -19,6 +19,6 @@ public class DownloadEntity {
     private String userId;
 
     @ManyToOne
-    @JoinColumn(name = "post_id", nullable = false)
+    @JoinColumn(name = "post_id", referencedColumnName = "post_id", nullable = false)
     private PostEntity postId;
 }
