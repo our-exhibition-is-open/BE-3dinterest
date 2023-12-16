@@ -1,7 +1,7 @@
 package com.team2._3dinterest.domain.yugyeong.upload.service;
 
 import com.team2._3dinterest.global.common.s3.AmazonS3ResourceStorage;
-import com.team2._3dinterest.domain.yugyeong.upload.dto.ResponseUploadDto;
+import com.team2._3dinterest.domain.yugyeong.upload.dto.FileMetadataDto;
 import com.team2._3dinterest.domain.yugyeong.upload.dto.RequestUploadDto;
 import com.team2._3dinterest.domain.yugyeong.entity.PostEntity;
 import com.team2._3dinterest.domain.yugyeong.repository.PostRepository;
@@ -21,14 +21,14 @@ public class UploadService {
     public ResponseUploadDto save(MultipartFile image, MultipartFile model, RequestUploadDto requestUploadDto) {
 
         // model
-        ResponseUploadDto responseModelDto = ResponseUploadDto.multipartOf(model);
         String model_url = responseModelDto.getPath();
         amazonS3ResourceStorage.store(model_url, model); // model s3 업로드
+        FileMetadataDto responseModelDto = FileMetadataDto.multipartOf(model);
 
         // image
-        ResponseUploadDto responseImageDto = ResponseUploadDto.multipartOf(image); // file에 대한 정보를 저장
         String image_url = responseImageDto.getPath();
         amazonS3ResourceStorage.store(image_url, image); // image s3 업로드
+        FileMetadataDto responseImageDto = FileMetadataDto.multipartOf(image);
 
         LocalDateTime upload_date = responseModelDto.getUpload_date();
 
