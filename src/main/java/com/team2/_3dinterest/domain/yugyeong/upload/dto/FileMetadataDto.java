@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
-public class ResponseUploadDto {
+public class FileMetadataDto {
     private String id;      // 36자리의 UUID
     private String name;    // 파일 업로드 시점의 파일명
     private String format;  // 파일 확장자
@@ -23,11 +23,11 @@ public class ResponseUploadDto {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime upload_date = LocalDateTime.now();
 
-    public static ResponseUploadDto multipartOf(MultipartFile file) {
+    public static FileMetadataDto multipartOf(MultipartFile file) {
         final String fileId = MultipartUtil.createUUID();
         final String format = MultipartUtil.getFormat(file.getOriginalFilename());
 
-        return ResponseUploadDto.builder()
+        return FileMetadataDto.builder()
                 .id(fileId)
                 .name(file.getOriginalFilename())
                 .format(format)

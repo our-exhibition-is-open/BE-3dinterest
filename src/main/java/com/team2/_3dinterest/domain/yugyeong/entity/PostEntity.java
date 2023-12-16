@@ -19,8 +19,8 @@ public class PostEntity {
     private int postId;
     private String user_id;
     private String title;
-    private String model_url;
-    private String image_url;
+    private String model_uuid;
+    private String image_uuid;
     private boolean tag_a;
     private boolean tag_b;
     private boolean tag_c;
@@ -29,13 +29,13 @@ public class PostEntity {
     private LocalDateTime upload_date;
 
     // dto를 entity로 변환하는 toEntity
-    public static PostEntity toEntity(RequestUploadDto Request, String model_url, String image_url, LocalDateTime upload_date) {
+    public static PostEntity toEntity(RequestUploadDto Request, String model_uuid, String image_uuid, LocalDateTime upload_date) {
         PostEntity.PostEntityBuilder builder = PostEntity.builder()
                 // post_id와 like_cnt 제외
                 .user_id(Request.getUser_id())
                 .title(Request.getTitle())
-                .model_url(model_url)
-                .image_url(image_url)
+                .model_uuid(model_uuid)
+                .image_uuid(image_uuid)
                 .tag_a(Request.isTagA())
                 .tag_b(Request.isTagB())
                 .tag_c(Request.isTagC())

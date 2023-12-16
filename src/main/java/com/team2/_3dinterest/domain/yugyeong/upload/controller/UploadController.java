@@ -1,6 +1,5 @@
 package com.team2._3dinterest.domain.yugyeong.upload.controller;
 
-import com.team2._3dinterest.domain.yugyeong.upload.dto.ResponseUploadDto;
 import com.team2._3dinterest.domain.yugyeong.upload.dto.RequestUploadDto;
 import com.team2._3dinterest.domain.yugyeong.upload.service.UploadService;
 import jakarta.validation.Valid;
@@ -19,7 +18,7 @@ public class UploadController {
     private final UploadService uploadService;
 
     @PostMapping
-    public ResponseEntity<ResponseUploadDto> post(
+    public ResponseEntity<Integer> post(
             @Valid @RequestPart(value = "image") MultipartFile image,
             @Valid @RequestPart(value = "model") MultipartFile model,
             @Valid @RequestPart(value = "requestUploadDto") RequestUploadDto requestUploadDto) {
