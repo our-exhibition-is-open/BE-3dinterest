@@ -1,11 +1,7 @@
-
-
 package com.team2._3dinterest.domain.ahyeon.heart;
 
 
-//import com.team2._3dinterest.domain.ahyeon.post.entity.PostEntity;
-//import com.team2._3dinterest.domain.ahyeon.user.UserEntity;
-//import jakarta.persistence.*;
+
 
 import jakarta.persistence.*;
 import lombok.Getter;
