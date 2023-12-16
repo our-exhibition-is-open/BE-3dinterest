@@ -21,18 +21,18 @@ public class UploadService {
     public int save(MultipartFile image, MultipartFile model, RequestUploadDto requestUploadDto) {
 
         // model
-        FileMetadataDto responseModelDto = FileMetadataDto.multipartOf(model);
-        String model_uuid = responseModelDto.getPath(); // model 파일의 이름을 uuid로 변환
+        FileMetadataDto metadataModelDto = FileMetadataDto.multipartOf(model);
+        String model_uuid = metadataModelDto.getPath(); // model 파일의 이름을 uuid로 변환
         amazonS3ResourceStorage.store(model_uuid, model); // model s3 업로드
 
         // image
-        FileMetadataDto responseImageDto = FileMetadataDto.multipartOf(image);
-        String image_uuid = responseImageDto.getPath(); // image 파일의 이름을 uuid로 변환
+        FileMetadataDto metadataImageDto = FileMetadataDto.multipartOf(image);
+        String image_uuid = metadataImageDto.getPath(); // image 파일의 이름을 uuid로 변환
         amazonS3ResourceStorage.store(image_uuid, image); // image s3 업로드
 
-        LocalDateTime upload_date = responseModelDto.getUpload_date();
+        LocalDateTime upload_date = metadataModelDto.getUpload_date(); // 업로드 시간을 model을 기준으로 한다.
 
-        PostEntity postEntity = PostEntity.toEntity(requestUploadDto, model_url, image_url, upload_date); // Dto를 UploadEntity로 변환
+        PostEntity postEntity = PostEntity.toEntity(requestUploadDto, model_uuid, image_uuid, upload_date); // Dto를 UploadEntity로 변환
         postRepository.save(postEntity);
 
         int post_id = postEntity.getPostId();
