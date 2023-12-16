@@ -18,7 +18,7 @@ public class UploadService {
     private final PostRepository postRepository;
 
     @Transactional
-    public ResponseUploadDto save(MultipartFile image, MultipartFile model, RequestUploadDto requestUploadDto) {
+    public int save(MultipartFile image, MultipartFile model, RequestUploadDto requestUploadDto) {
 
         // model
         FileMetadataDto responseModelDto = FileMetadataDto.multipartOf(model);
@@ -35,6 +35,8 @@ public class UploadService {
         PostEntity postEntity = PostEntity.toEntity(requestUploadDto, model_url, image_url, upload_date); // Dto를 UploadEntity로 변환
         postRepository.save(postEntity);
 
-        return responseModelDto;
+        int post_id = postEntity.getPostId();
+
+        return post_id;
     }
 }
