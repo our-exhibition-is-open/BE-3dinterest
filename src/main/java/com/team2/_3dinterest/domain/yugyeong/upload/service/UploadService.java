@@ -21,14 +21,14 @@ public class UploadService {
     public ResponseUploadDto save(MultipartFile image, MultipartFile model, RequestUploadDto requestUploadDto) {
 
         // model
-        String model_url = responseModelDto.getPath();
-        amazonS3ResourceStorage.store(model_url, model); // model s3 업로드
         FileMetadataDto responseModelDto = FileMetadataDto.multipartOf(model);
+        String model_uuid = responseModelDto.getPath(); // model 파일의 이름을 uuid로 변환
+        amazonS3ResourceStorage.store(model_uuid, model); // model s3 업로드
 
         // image
-        String image_url = responseImageDto.getPath();
-        amazonS3ResourceStorage.store(image_url, image); // image s3 업로드
         FileMetadataDto responseImageDto = FileMetadataDto.multipartOf(image);
+        String image_uuid = responseImageDto.getPath(); // image 파일의 이름을 uuid로 변환
+        amazonS3ResourceStorage.store(image_uuid, image); // image s3 업로드
 
         LocalDateTime upload_date = responseModelDto.getUpload_date();
 
