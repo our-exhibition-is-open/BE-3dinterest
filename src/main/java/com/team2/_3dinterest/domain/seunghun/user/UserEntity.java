@@ -25,8 +25,8 @@ public class UserEntity {
     private String userId;
 
     private String title;
-    private String model_url;
-    private String image_url;
+    private String model_uuid;
+    private String image_uuid;
     private String tag_a;
     private String tag_b;
     private String tag_c;
