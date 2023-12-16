@@ -1,7 +1,7 @@
 package com.team2._3dinterest.domain.yugyeong.upload.service;
 
 import com.team2._3dinterest.global.common.s3.AmazonS3ResourceStorage;
-import com.team2._3dinterest.domain.yugyeong.upload.dto.ResponseUploadDto;
+import com.team2._3dinterest.domain.yugyeong.upload.dto.FileMetadataDto;
 import com.team2._3dinterest.domain.yugyeong.upload.dto.RequestUploadDto;
 import com.team2._3dinterest.domain.yugyeong.entity.PostEntity;
 import com.team2._3dinterest.domain.yugyeong.repository.PostRepository;
@@ -18,23 +18,25 @@ public class UploadService {
     private final PostRepository postRepository;
 
     @Transactional
-    public ResponseUploadDto save(MultipartFile image, MultipartFile model, RequestUploadDto requestUploadDto) {
+    public int save(MultipartFile image, MultipartFile model, RequestUploadDto requestUploadDto) {
 
         // model
-        ResponseUploadDto responseModelDto = ResponseUploadDto.multipartOf(model);
-        String model_url = responseModelDto.getPath();
-        amazonS3ResourceStorage.store(model_url, model); // model s3 업로드
+        FileMetadataDto metadataModelDto = FileMetadataDto.multipartOf(model);
+        String model_uuid = metadataModelDto.getPath(); // model 파일의 이름을 uuid로 변환
+        amazonS3ResourceStorage.store(model_uuid, model); // model s3 업로드
 
         // image
-        ResponseUploadDto responseImageDto = ResponseUploadDto.multipartOf(image); // file에 대한 정보를 저장
-        String image_url = responseImageDto.getPath();
-        amazonS3ResourceStorage.store(image_url, image); // image s3 업로드
+        FileMetadataDto metadataImageDto = FileMetadataDto.multipartOf(image);
+        String image_uuid = metadataImageDto.getPath(); // image 파일의 이름을 uuid로 변환
+        amazonS3ResourceStorage.store(image_uuid, image); // image s3 업로드
 
-        LocalDateTime upload_date = responseModelDto.getUpload_date();
+        LocalDateTime upload_date = metadataModelDto.getUpload_date(); // 업로드 시간을 model을 기준으로 한다.
 
-        PostEntity postEntity = PostEntity.toEntity(requestUploadDto, model_url, image_url, upload_date); // Dto를 UploadEntity로 변환
+        PostEntity postEntity = PostEntity.toEntity(requestUploadDto, model_uuid, image_uuid, upload_date); // Dto를 UploadEntity로 변환
         postRepository.save(postEntity);
 
-        return responseModelDto;
+        int post_id = postEntity.getPostId();
+
+        return post_id;
     }
 }

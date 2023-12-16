@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PostRepository extends JpaRepository<PostEntity, Integer> {
-    PostEntity findByPostId(int postId);
+    PostEntity findByPostId(int postId);    // download에서 post_table의 postId 조회
 }

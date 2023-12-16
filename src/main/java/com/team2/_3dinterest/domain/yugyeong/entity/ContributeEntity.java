@@ -5,20 +5,19 @@ import lombok.*;
 
 @Entity
 @Data
-@Table(name="download_history_table")
+@Table(name="contribute_table")
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DownloadEntity {
+public class ContributeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="user_id")
-    private String userId;
+    private int post_id;
 
     @ManyToOne
-    @JoinColumn(name = "post_id", referencedColumnName = "post_id", nullable = false)
-    private PostEntity postId;
+    @JoinColumn(name = "parent_id", referencedColumnName = "post_id", nullable = false)
+    private PostEntity parent_id;
 }

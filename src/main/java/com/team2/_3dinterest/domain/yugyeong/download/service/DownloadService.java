@@ -29,17 +29,16 @@ public class DownloadService {
             if (postEntity != null) {
                 // DownloadEntity 생성 및 저장
                 DownloadEntity downloadEntity = DownloadEntity.builder()
-                        .user_id(requestDownloadDto.getUser_id())
+                        .userId(requestDownloadDto.getUser_id())
                         .postId(postEntity)
                         .build();
 
                 downloadRepository.save(downloadEntity);
 
                 // S3에서 모델을 다운로드하고 처리하는 로직을 구현
-                // String original_name = postEntity.getOriginal_name();
-                String model_url = postEntity.getModel_url();
+                String model_uuid = postEntity.getModel_uuid();
 
-                return s3Download.getObject(model_url); // s3에서 다운로드 후 byte 배열 반환
+                return s3Download.getObject(model_uuid); // s3에서 다운로드 후 byte 배열 반환
             } else {
                 // post_id에 해당하는 정보가 없을 경우 예외 처리
                 throw new EntityNotFoundException("post_id에 해당하는 정보가 없습니다.");
