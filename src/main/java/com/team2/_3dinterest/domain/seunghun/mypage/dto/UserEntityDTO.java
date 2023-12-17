@@ -1,6 +1,6 @@
-package com.team2._3dinterest.domain.seunghun.repository;
+package com.team2._3dinterest.domain.seunghun.mypage.dto;
 
-import com.team2._3dinterest.domain.seunghun.user.UserEntity;
+import com.team2._3dinterest.domain.seunghun.entity.UserEntity;
 import lombok.*;
 
 import java.time.LocalDateTime;

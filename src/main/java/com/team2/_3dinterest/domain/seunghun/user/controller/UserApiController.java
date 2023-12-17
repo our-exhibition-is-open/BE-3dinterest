@@ -1,8 +1,8 @@
-package com.team2._3dinterest.domain.seunghun.controller;
+package com.team2._3dinterest.domain.seunghun.user.controller;
 
 import com.team2._3dinterest.domain.seunghun.repository.*;
-import com.team2._3dinterest.domain.seunghun.user.UserCreateForm;
-import com.team2._3dinterest.domain.seunghun.service.UserService;
+import com.team2._3dinterest.domain.seunghun.user.sevice.UserCreateService;
+import com.team2._3dinterest.domain.seunghun.user.sevice.UserService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -36,13 +36,13 @@ public class UserApiController {
 
 
     @PostMapping("/signup")
-    public ResponseEntity<String> signup(@Valid @RequestBody UserCreateForm userCreateForm) {
-        if (!userCreateForm.getPassword1().equals(userCreateForm.getPassword2())) {
+    public ResponseEntity<String> signup(@Valid @RequestBody UserCreateService userCreateService) {
+        if (!userCreateService.getPassword1().equals(userCreateService.getPassword2())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("2개의 패스워드가 일치하지 않습니다.");
         }
 
         try {
-            userService.create(userCreateForm.getUsername(), userCreateForm.getEmail(), userCreateForm.getPassword1());
+            userService.create(userCreateService.getUsername(), userCreateService.getEmail(), userCreateService.getPassword1());
             return ResponseEntity.status(HttpStatus.CREATED).body("사용자 등록이 성공했습니다.");
         } catch (DataIntegrityViolationException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("이미 등록된 사용자입니다.");

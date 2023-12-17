@@ -1,4 +1,4 @@
-package com.team2._3dinterest.domain.seunghun.service;
+package com.team2._3dinterest.domain.seunghun.security;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import com.team2._3dinterest.domain.seunghun.repository.UserRepository;
-import com.team2._3dinterest.domain.seunghun.user.UserEntity;
-import com.team2._3dinterest.domain.seunghun.user.UserRole;
+import com.team2._3dinterest.domain.seunghun.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

@@ -1,12 +1,12 @@
-package com.team2._3dinterest.domain.seunghun.controller;
+package com.team2._3dinterest.domain.seunghun.mypage.controller;
 
-import com.team2._3dinterest.domain.seunghun.File.FileService;
-import com.team2._3dinterest.domain.seunghun.repository.ResponseFileDto;
-import com.team2._3dinterest.domain.seunghun.repository.UserEntityDTO;
+import com.team2._3dinterest.domain.seunghun.mypage.service.FileService;
+import com.team2._3dinterest.domain.seunghun.mypage.dto.ResponseFileDto;
+import com.team2._3dinterest.domain.seunghun.mypage.dto.UserEntityDTO;
 import com.team2._3dinterest.domain.seunghun.repository.UserFileRepository;
 import com.team2._3dinterest.domain.seunghun.repository.UserRepository;
-import com.team2._3dinterest.domain.seunghun.user.UserEntity;
-import com.team2._3dinterest.domain.seunghun.user.FileEntity;
+import com.team2._3dinterest.domain.seunghun.entity.UserEntity;
+import com.team2._3dinterest.domain.seunghun.entity.FileEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;

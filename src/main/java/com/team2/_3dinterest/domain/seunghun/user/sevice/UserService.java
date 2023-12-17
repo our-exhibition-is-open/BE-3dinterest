@@ -1,7 +1,7 @@
-package com.team2._3dinterest.domain.seunghun.service;
+package com.team2._3dinterest.domain.seunghun.user.sevice;
 
 import com.team2._3dinterest.domain.seunghun.repository.UserRepository;
-import com.team2._3dinterest.domain.seunghun.user.UserEntity;
+import com.team2._3dinterest.domain.seunghun.entity.UserEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,5 @@
-package com.team2._3dinterest.domain.seunghun.File;
+package com.team2._3dinterest.domain.seunghun.entity;
 
-import com.team2._3dinterest.domain.seunghun.user.FileEntity;
 import jakarta.persistence.*;
 import lombok.*;
 

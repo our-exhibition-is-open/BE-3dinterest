@@ -1,6 +1,7 @@
 package com.team2._3dinterest.domain.seunghun.repository;
 
-import com.team2._3dinterest.domain.seunghun.user.FileEntity;
+import com.team2._3dinterest.domain.seunghun.mypage.dto.ResponseFileDto;
+import com.team2._3dinterest.domain.seunghun.entity.FileEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

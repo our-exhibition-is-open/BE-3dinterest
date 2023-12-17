@@ -1,8 +1,10 @@
-package com.team2._3dinterest.domain.seunghun.File;
+package com.team2._3dinterest.domain.seunghun.mypage.service;
 
-import com.team2._3dinterest.domain.seunghun.repository.ResponseFileDto;
+import com.team2._3dinterest.domain.seunghun.mypage.dto.ResponseFileDto;
+import com.team2._3dinterest.domain.seunghun.entity.ContributeEntity;
+import com.team2._3dinterest.domain.seunghun.repository.FileEntityRepository;
 import com.team2._3dinterest.domain.seunghun.repository.UserFileRepository;
-import com.team2._3dinterest.domain.seunghun.user.FileEntity;
+import com.team2._3dinterest.domain.seunghun.entity.FileEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
