@@ -1,8 +1,5 @@
 package com.team2._3dinterest.domain.ahyeon.heart;
 
-
-
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

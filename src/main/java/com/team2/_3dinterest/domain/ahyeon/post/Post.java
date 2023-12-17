@@ -3,7 +3,6 @@ package com.team2._3dinterest.domain.ahyeon.post;
 
 import lombok.Getter;
 import lombok.Setter;
-
 import java.time.LocalDateTime;
 import java.util.Date;
 

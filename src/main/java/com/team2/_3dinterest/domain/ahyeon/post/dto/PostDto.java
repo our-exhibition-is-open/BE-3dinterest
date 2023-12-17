@@ -1,7 +1,6 @@
 package com.team2._3dinterest.domain.ahyeon.post.dto;
 
 import lombok.Data;
-
 import java.time.LocalDateTime;
 
 @Data
