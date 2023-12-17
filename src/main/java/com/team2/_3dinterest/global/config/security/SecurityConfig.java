@@ -1,4 +1,4 @@
-package com.team2._3dinterest.domain.seunghun;
+package com.team2._3dinterest.global.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

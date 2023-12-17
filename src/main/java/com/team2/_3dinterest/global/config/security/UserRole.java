@@ -1,4 +1,4 @@
-package com.team2._3dinterest.domain.seunghun.security;
+package com.team2._3dinterest.global.config.security;
 
 import lombok.Getter;
 

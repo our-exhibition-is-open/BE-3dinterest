@@ -1,10 +1,11 @@
-package com.team2._3dinterest.domain.seunghun.security;
+package com.team2._3dinterest.global.config.security;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import com.team2._3dinterest.domain.seunghun.entity.UserEntity;
+import com.team2._3dinterest.global.config.security.UserRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

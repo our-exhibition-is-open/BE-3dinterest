@@ -1,6 +1,5 @@
-package com.team2._3dinterest.domain.seunghun.File;
+package com.team2._3dinterest.domain.seunghun.entity;
 
-import com.team2._3dinterest.domain.seunghun.user.FileEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
-public class ContributeEntity {
+public class FileContributeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

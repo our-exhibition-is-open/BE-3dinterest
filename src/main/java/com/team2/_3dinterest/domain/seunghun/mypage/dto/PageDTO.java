@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
-public class UserEntityDTO {
+public class PageDTO {
     private Long userId;
     private String userName;
     private String userEmail;
@@ -30,8 +30,8 @@ public class UserEntityDTO {
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    public static UserEntityDTO from(UserEntity userEntity) {
-        return UserEntityDTO.builder()
+    public static PageDTO from(UserEntity userEntity) {
+        return PageDTO.builder()
                 // 필요한 필드들을 SiteUser에서 가져와서 설정
                 .userId(Long.valueOf(userEntity.getUserId()))
                 .userName(userEntity.getUserName())

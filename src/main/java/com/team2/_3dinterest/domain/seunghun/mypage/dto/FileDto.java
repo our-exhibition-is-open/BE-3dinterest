@@ -1,6 +1,5 @@
 package com.team2._3dinterest.domain.seunghun.mypage.dto;
 
-import com.team2._3dinterest.domain.seunghun.entity.FileContributeEntity;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -12,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
-public class ResponseFileDto {
+public class FileDto {
     private String image;
     private List<String> fileList;
     private String parentID;
@@ -26,8 +25,8 @@ public class ResponseFileDto {
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    public static ResponseFileDto from(com.team2._3dinterest.domain.seunghun.entity.FileEntity userEntity) {
-        return ResponseFileDto.builder()
+    public static FileDto from(com.team2._3dinterest.domain.seunghun.entity.FileEntity userEntity) {
+        return FileDto.builder()
                 .id(userEntity.getUserId())
                 .name(userEntity.getTitle())
                 .path(userEntity.getImage_uuid())  // 이미지 URL을 path로 사용하는 예시입니다. 필요에 따라 수정해주세요

@@ -1,12 +1,10 @@
-package com.team2._3dinterest.domain.seunghun.user;
+package com.team2._3dinterest.domain.seunghun.entity;
 
-import com.team2._3dinterest.domain.seunghun.File.ContributeEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "post_table")
@@ -21,7 +19,7 @@ public class FileEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id")
-    private String postId;
+    private int postId;
 
     @Column(name = "user_id")
     private String userId;
@@ -37,8 +35,5 @@ public class FileEntity {
 
     @Column(name = "upload_date")
     private LocalDateTime upload_date;
-
-    @OneToMany(mappedBy = "parentID", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ContributeEntity> files;
 
 }

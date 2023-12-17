@@ -1,4 +1,4 @@
-package com.team2._3dinterest.domain.seunghun.user;
+package com.team2._3dinterest.domain.seunghun.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
