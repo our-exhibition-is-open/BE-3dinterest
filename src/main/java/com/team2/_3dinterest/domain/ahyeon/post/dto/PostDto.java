@@ -9,7 +9,7 @@ public class PostDto {
 
     private int postId;
     private String userId;
-    private Integer likeCnt;
+    private int likeCnt;
     private String title;
     private String imageUrl;
     private String modelUrl;
