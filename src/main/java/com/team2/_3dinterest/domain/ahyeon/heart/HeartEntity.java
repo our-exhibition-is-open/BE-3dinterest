@@ -18,10 +18,10 @@ public class HeartEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "like_id")
-    private Long heartId;
+    private int heartId;
 
     @Column(name = "post_id")
-    private Long postId;
+    private int postId;
 
     @Column(name = "user_id", length = 100)
     private String userId;
@@ -31,20 +31,22 @@ public class HeartEntity {
     public HeartEntity() {
     }
 
-    public HeartEntity(Long postId, String userId) {
+    public HeartEntity(int postId, String userId) {
         this.postId = postId;
         this.userId = userId;
     }
 
-    public void setHeartId(Long heartId) {
+    public void setHeartId(int heartId) {
         this.heartId = heartId;
     }
 
-    public void setPostId(Long postId) {
+    public void setPostId(int postId) {
         this.postId = postId;
     }
 
     public void setUserId(String userId) {
         this.userId = String.valueOf(userId);
     }
+
+
 }

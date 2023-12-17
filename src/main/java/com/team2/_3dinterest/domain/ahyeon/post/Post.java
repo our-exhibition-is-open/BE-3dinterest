@@ -10,7 +10,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class Post {
-    private Long postId;
+    private int postId;
     private String userId;
     private int likeCnt;
     private String imageUrl;
@@ -18,8 +18,8 @@ public class Post {
     private String title;
     private LocalDateTime uploadDate;
 
-    public Long getPostId() {return postId;}
-    public void setPostId(Long postId) {
+    public int getPostId() {return postId;}
+    public void setPostId(int postId) {
         this.postId = postId;
     }
 

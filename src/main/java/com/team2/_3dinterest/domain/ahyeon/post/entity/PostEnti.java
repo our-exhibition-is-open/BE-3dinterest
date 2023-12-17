@@ -25,7 +25,7 @@ public class PostEnti {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id", nullable = false, updatable = false)
-    private Long postId;
+    private int postId;
 
     @NotNull
     @Column(name = "user_id", nullable = false)

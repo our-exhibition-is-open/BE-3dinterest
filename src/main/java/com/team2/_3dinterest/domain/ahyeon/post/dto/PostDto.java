@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 @Data
 public class PostDto {
 
-    private Long postId;
+    private int postId;
     private String userId;
     private Integer likeCnt;
     private String title;
