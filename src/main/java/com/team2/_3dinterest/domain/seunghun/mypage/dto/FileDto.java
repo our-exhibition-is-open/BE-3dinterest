@@ -1,6 +1,6 @@
-package com.team2._3dinterest.domain.seunghun.repository;
+package com.team2._3dinterest.domain.seunghun.mypage.dto;
 
-import com.team2._3dinterest.domain.seunghun.File.ContributeEntity;
+import com.team2._3dinterest.domain.seunghun.entity.FileContributeEntity;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -26,12 +26,13 @@ public class ResponseFileDto {
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    public static ResponseFileDto from(ContributeEntity userEntity) {
+    public static ResponseFileDto from(com.team2._3dinterest.domain.seunghun.entity.FileEntity userEntity) {
         return ResponseFileDto.builder()
-                .id(userEntity.getuserId())
+                .id(userEntity.getUserId())
                 .name(userEntity.getTitle())
                 .path(userEntity.getImage_uuid())  // 이미지 URL을 path로 사용하는 예시입니다. 필요에 따라 수정해주세요
                 .createdAt(userEntity.getUpload_date())
                 .build();
     }
+
 }
