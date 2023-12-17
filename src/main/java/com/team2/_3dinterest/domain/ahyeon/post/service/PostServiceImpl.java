@@ -1,6 +1,5 @@
 package com.team2._3dinterest.domain.ahyeon.post.service;
 
-
 import com.team2._3dinterest.domain.ahyeon.heart.HeartEntity;
 import com.team2._3dinterest.domain.ahyeon.heart.HeartRepository;
 import com.team2._3dinterest.domain.ahyeon.post.Post;

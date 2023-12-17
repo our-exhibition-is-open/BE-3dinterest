@@ -1,6 +1,5 @@
 package com.team2._3dinterest.domain.ahyeon.post.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
