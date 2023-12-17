@@ -5,8 +5,8 @@ import com.team2._3dinterest.domain.seunghun.repository.ResponseFileDto;
 import com.team2._3dinterest.domain.seunghun.repository.UserEntityDTO;
 import com.team2._3dinterest.domain.seunghun.repository.UserFileRepository;
 import com.team2._3dinterest.domain.seunghun.repository.UserRepository;
-import com.team2._3dinterest.domain.seunghun.user.SiteUser;
 import com.team2._3dinterest.domain.seunghun.user.UserEntity;
+import com.team2._3dinterest.domain.seunghun.user.FileEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -32,7 +32,7 @@ public class MyPageController {
         // 현재 로그인한 사용자의 정보를 가져오는 로직
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        Optional<SiteUser> user = userRepository.findByUserName(username);
+        Optional<UserEntity> user = userRepository.findByUserName(username);
 
         // 사용자 정보가 있을 경우 DTO로 변환하여 반환
         return user.map(value -> ResponseEntity.ok(UserEntityDTO.from(value)))
@@ -40,15 +40,15 @@ public class MyPageController {
     }
 
     @GetMapping("/user-files")
-    public ResponseEntity<List<UserEntity>> getUserFiles() {
+    public ResponseEntity<List<FileEntity>> getUserFiles() {
         // 현재 로그인한 사용자의 정보를 가져오는 로직
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        Optional<SiteUser> user = userRepository.findByUserName(username);
+        Optional<UserEntity> user = userRepository.findByUserName(username);
 
         // 사용자 정보가 있을 경우 해당 사용자가 올린 파일 정보를 조회하여 반환
         return user.map(siteUser -> {
-            List<UserEntity> userFiles = userFileRepository.findByUserId(siteUser.getUserId());
+            List<FileEntity> userFiles = userFileRepository.findByUserId(siteUser.getUserId());
             return ResponseEntity.ok(userFiles);
         }).orElseGet(() -> ResponseEntity.notFound().build());
     }
@@ -56,8 +56,10 @@ public class MyPageController {
 
     @GetMapping("/byParentID")
     public ResponseEntity<List<ResponseFileDto>> getFilesByParentID(@RequestParam String parentID) {
-        List<ResponseFileDto> fileDetailDTOs = fileService.getFilesByParentID(parentID);
+        List<ResponseFileDto> postIDs = fileService.getFilesByParentID(parentID);
+        List<ResponseFileDto> fileDetailDTOs = fileService.getFilesByPostIDs(postIDs);
         return ResponseEntity.ok(fileDetailDTOs);
     }
+
 
 }

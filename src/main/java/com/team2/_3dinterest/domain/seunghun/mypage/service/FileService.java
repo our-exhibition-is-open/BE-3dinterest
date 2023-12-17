@@ -2,6 +2,7 @@ package com.team2._3dinterest.domain.seunghun.File;
 
 import com.team2._3dinterest.domain.seunghun.repository.ResponseFileDto;
 import com.team2._3dinterest.domain.seunghun.repository.UserFileRepository;
+import com.team2._3dinterest.domain.seunghun.user.FileEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,13 +19,19 @@ public class FileService {
     private UserFileRepository userFileRepository;
 
     public List<ResponseFileDto> getFilesByParentID(String parentID) {
-        // FileEntity에서 parentID에 해당하는 모든 postID 가져오기
-        List<String> postIDs = fileRepository.findPostIDsByParentID(parentID);
+        List<ContributeEntity> fileEntities = fileRepository.findByParentIDPostId(parentID);
 
-        // 각 postID에 해당하는 UserEntity 조회하여 ResponseFileDto로 매핑
-        return postIDs.stream()
-                .flatMap(postID -> userFileRepository.findByPostId(postID).stream())
-                .map(ResponseFileDto::from)
+        return fileEntities.stream()
+                .map(contributeEntity -> ResponseFileDto.from(contributeEntity))
                 .collect(Collectors.toList());
     }
+
+    public List<ResponseFileDto> getFilesByPostIDs(List<ResponseFileDto> postIDs) {
+        return postIDs.stream()
+                .flatMap(postID -> userFileRepository.findByPostId(postID).stream())
+                .map((FileEntity userEntity) -> ResponseFileDto.from(FileEntity))
+                .collect(Collectors.toList());
+    }
+
+
 }
