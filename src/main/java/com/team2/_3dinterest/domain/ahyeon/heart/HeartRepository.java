@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface HeartRepository extends JpaRepository<HeartEntity, Long>
 {
-    HeartEntity findByPostIdAndUserId(Long postId, String userId);
+    HeartEntity findByPostIdAndUserId(int postId, String userId);
 }

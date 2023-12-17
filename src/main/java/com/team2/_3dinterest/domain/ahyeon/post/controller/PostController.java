@@ -17,7 +17,7 @@ public class PostController {
     private PostService postService;
 
     @GetMapping("/{postId}")
-    public ResponseEntity<PostDto> getPostById(@PathVariable Long postId) {
+    public ResponseEntity<PostDto> getPostById(@PathVariable int postId) {
         Post post = postService.getPostById(postId);
         if (post != null) {
             PostDto postDto = mapToPostDto(post);
@@ -31,7 +31,7 @@ public class PostController {
 
     //@PathVariable Long postId,  @RequestParam String userId
     @GetMapping("/{postId}/like")
-    public ResponseEntity<Post> updateLike(@PathVariable Long postId, @RequestParam String userId) {
+    public ResponseEntity<Post> updateLike(@PathVariable int postId, @RequestParam String userId) {
         Post updatedPost = postService.updateLikeAndReturnPost(postId, userId);
         if (updatedPost != null) {
             return ResponseEntity.ok(updatedPost); // 성공 시 업데이트된 게시물 정보 반환

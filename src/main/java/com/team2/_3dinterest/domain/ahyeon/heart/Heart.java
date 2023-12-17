@@ -6,7 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Heart {
-    private Long heartId;
-    private Long postId;
+    private int heartId;
+    private int postId;
     private Long userId;
+
 }

@@ -18,21 +18,25 @@ public class PostServiceImpl implements PostService {
     @Autowired
     private PostRepo postRepository;
 
+    public PostServiceImpl(PostRepo postRepository){
+        this.postRepository=postRepository;
+    }
+
     @Autowired
     private HeartRepository heartRepository;
 
-    public Post getPostById(Long postId) {
+    public Post getPostById(int postId) {
         return postRepository.findById(postId).map(this::mapToPost).orElse(null);
     }
 
 
     @Override
     @Transactional
-    public Post updateLikeAndReturnPost(Long postId, String userId) {
+    public Post updateLikeAndReturnPost(int postId, String userId) {
         return updateLike(postId, userId, true);
     }
 
-    private Post updateLike(Long postId, String userId, boolean getUpdatedPost) {
+    private Post updateLike(int postId, String userId, boolean getUpdatedPost) {
         Optional<PostEnti> postEntityOptional = postRepository.findById(postId);
 
         if (postEntityOptional.isPresent()) {
@@ -43,15 +47,22 @@ public class PostServiceImpl implements PostService {
             if (existingHeart != null) {
                 // 좋아요 취소
                 heartRepository.delete(existingHeart);
-                post.setLikeCnt(Math.max(0, post.getLikeCnt()-1));
+                post.setLikeCnt(Math.max(0, post.getLikeCnt() - 1));
             } else {
                 // 좋아요 누르기
                 HeartEntity newHeart = new HeartEntity();
                 newHeart.setPostId(postId);
                 newHeart.setUserId(userId);
                 heartRepository.save(newHeart);
-                post.setLikeCnt(Math.min(1, post.getLikeCnt()+1));
+                post.setLikeCnt(Math.min(1, post.getLikeCnt() + 1));
             }
+
+            //heartRepository.save(newHeart);
+            // like_cnt 값을 post_table에 업데이트
+            //post.setLikeCnt(post.getLikeCnt());
+            //postRepo.save(post);
+            postRepository.save(postEntityOptional.get());
+//postRepository.updateLikeCnt(postId, post.getLikeCnt());
 
             if (getUpdatedPost) {
                 return post;
