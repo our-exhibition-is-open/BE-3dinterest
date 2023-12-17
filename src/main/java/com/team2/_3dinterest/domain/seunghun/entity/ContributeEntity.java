@@ -1,9 +1,8 @@
 package com.team2._3dinterest.domain.seunghun.File;
 
+import com.team2._3dinterest.domain.seunghun.user.FileEntity;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "contribute_table")
@@ -11,14 +10,16 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
-public class FileEntity {
+public class ContributeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "parent_id")
-    private String parentID;
+    @ManyToOne
+    @JoinColumn(name = "parent_id", referencedColumnName = "post_id", nullable = false)
+    private FileEntity parentID;
 
     @Column(name = "post_id")
     private String postID;
+
 }

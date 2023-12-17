@@ -1,7 +1,7 @@
 package com.team2._3dinterest.domain.seunghun.service;
 
 import com.team2._3dinterest.domain.seunghun.repository.UserRepository;
-import com.team2._3dinterest.domain.seunghun.user.SiteUser;
+import com.team2._3dinterest.domain.seunghun.user.UserEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +14,8 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public SiteUser create(String username, String email, String password) {
-        SiteUser user = SiteUser.builder()
+    public UserEntity create(String username, String email, String password) {
+        UserEntity user = UserEntity.builder()
                 .userName(username)
                 .userEmail(email)
                 .userPassword(passwordEncoder.encode(password))

@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import com.team2._3dinterest.domain.seunghun.repository.UserRepository;
-import com.team2._3dinterest.domain.seunghun.user.SiteUser;
+import com.team2._3dinterest.domain.seunghun.user.UserEntity;
 import com.team2._3dinterest.domain.seunghun.user.UserRole;
 import lombok.RequiredArgsConstructor;
 
@@ -23,17 +23,17 @@ public class UserSecurityService implements UserDetailsService {
     private final UserRepository userRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<SiteUser> _siteUser = this.userRepository.findByUserName(username);
+        Optional<UserEntity> _siteUser = this.userRepository.findByUserName(username);
         if (_siteUser.isEmpty()) {
             throw new UsernameNotFoundException("사용자를 찾을수 없습니다.");
         }
-        SiteUser siteUser = _siteUser.get();
+        UserEntity userEntity = _siteUser.get();
         List<GrantedAuthority> authorities = new ArrayList<>();
         if ("admin".equals(username)) {
             authorities.add(new SimpleGrantedAuthority(UserRole.ADMIN.getValue()));
         } else {
             authorities.add(new SimpleGrantedAuthority(UserRole.USER.getValue()));
         }
-        return new User(siteUser.getUserName(), siteUser.getUserPassword(), authorities);
+        return new User(userEntity.getUserName(), userEntity.getUserPassword(), authorities);
     }
 }
