@@ -53,13 +53,15 @@ public class PostService implements PostInterface {
                 newHeart.setUserId(userId);
                 heartRepository.save(newHeart);
                 getPostDto.setLikeCnt(Math.min(1, getPostDto.getLikeCnt() + 1));
+                postRepository.flush();
             }
+            postEntityOptional.get().setLikeCnt(getPostDto.getLikeCnt());
 
             //heartRepository.save(newHeart);
             // like_cnt 값을 post_table에 업데이트
             //post.setLikeCnt(post.getLikeCnt());
             //postRepo.save(post);
-            postRepository.save(postEntityOptional.get());
+            //postRepository.save(postEntityOptional.get());
 //postRepository.updateLikeCnt(postId, post.getLikeCnt());
 
             if (getUpdatedPost) {
