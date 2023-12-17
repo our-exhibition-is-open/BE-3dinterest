@@ -1,10 +1,12 @@
 package com.team2._3dinterest.domain.seunghun.user;
 
+import com.team2._3dinterest.domain.seunghun.File.ContributeEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "post_table")
@@ -14,7 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
-public class UserEntity {
+public class FileEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,5 +37,8 @@ public class UserEntity {
 
     @Column(name = "upload_date")
     private LocalDateTime upload_date;
+
+    @OneToMany(mappedBy = "parentID", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ContributeEntity> files;
 
 }
