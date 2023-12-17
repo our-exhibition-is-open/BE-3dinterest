@@ -1,4 +1,4 @@
-package com.team2._3dinterest.domain.ahyeon.post.entity;
+package com.team2._3dinterest.domain.ahyeon.like.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 //@NoArgsConstructor
 
 @Table(name="post_table")
-public class PostEnti {
+public class Post_Entity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id", nullable = false, updatable = false)
@@ -64,16 +64,16 @@ public class PostEnti {
     @Column(name = "upload_date", nullable = false)
     private LocalDateTime uploadDate;
 
-    public PostEnti() {
+    public Post_Entity() {
     }
 
 
     // 생성자, Getter, Setter, 기타 메서드 생략
 
     // Parameterized constructor
-    public PostEnti(String userId, String title, String modelUrl, String imageUrl,
-                      boolean tagA, boolean tagB, boolean tagC, boolean tagD,
-                      int likeCnt, LocalDateTime uploadDate) {
+    public Post_Entity(String userId, String title, String modelUrl, String imageUrl,
+                       boolean tagA, boolean tagB, boolean tagC, boolean tagD,
+                       int likeCnt, LocalDateTime uploadDate) {
         this.userId = userId;
         this.title = title;
         this.modelUrl = modelUrl;

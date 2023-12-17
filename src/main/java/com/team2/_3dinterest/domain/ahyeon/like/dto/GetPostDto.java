@@ -1,14 +1,13 @@
-package com.team2._3dinterest.domain.ahyeon.post;
+package com.team2._3dinterest.domain.ahyeon.like.dto;
 
 
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Getter
 @Setter
-public class Post {
+public class GetPostDto {
     private int postId;
     private String userId;
     private int likeCnt;
