@@ -1,4 +1,4 @@
-package com.team2._3dinterest.domain.ahyeon.heart;
+package com.team2._3dinterest.domain.ahyeon.like.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "like_table")
 
-public class HeartEntity {
+public class LikeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +24,10 @@ public class HeartEntity {
 
     // 생성자, getter, setter 등 필요한 메서드 추가
 
-    public HeartEntity() {
+    public LikeEntity() {
     }
 
-    public HeartEntity(int postId, String userId) {
+    public LikeEntity(int postId, String userId) {
         this.postId = postId;
         this.userId = userId;
     }
