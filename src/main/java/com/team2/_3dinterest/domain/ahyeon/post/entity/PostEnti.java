@@ -1,10 +1,7 @@
 package com.team2._3dinterest.domain.ahyeon.post.entity;
 
-
 import jakarta.persistence.*;
-
 import lombok.*;
-
 import org.hibernate.annotations.DynamicInsert;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;

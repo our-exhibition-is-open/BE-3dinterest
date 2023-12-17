@@ -1,6 +1,5 @@
 package com.team2._3dinterest.domain.ahyeon.post.controller;
 
-
 import com.team2._3dinterest.domain.ahyeon.post.Post;
 import com.team2._3dinterest.domain.ahyeon.post.dto.PostDto;
 import com.team2._3dinterest.domain.ahyeon.post.service.PostService;

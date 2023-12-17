@@ -8,6 +8,6 @@ import lombok.Setter;
 public class Heart {
     private int heartId;
     private int postId;
-    private Long userId;
+    private String userId;
 
 }
