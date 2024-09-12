@@ -12,13 +12,13 @@ import lombok.*;
 public class FileContributeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @ManyToOne
     @JoinColumn(name = "parent_id", referencedColumnName = "post_id", nullable = false)
-    private FileEntity parentID;
+    private FileEntity parentId;
 
     @Column(name = "post_id")
-    private String postID;
+    private int postId;
 
 }

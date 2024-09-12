@@ -27,10 +27,10 @@ public class FileEntity {
     private String title;
     private String model_uuid;
     private String image_uuid;
-    private int tag_a;
-    private int tag_b;
-    private int tag_c;
-    private int tag_d;
+    private boolean tag_a;
+    private boolean tag_b;
+    private boolean tag_c;
+    private boolean tag_d;
     private int like_cnt;
 
     @Column(name = "upload_date")
